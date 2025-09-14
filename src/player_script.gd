@@ -11,9 +11,12 @@ extends Node2D
 @export var speed = 400
 @export var friction = 2.0
 
+@export var default_hand_distance = 10
+
 var player_acceleration = Vector2(0.0, 0.0)
 
 var hand_acceleration = Vector2(0.0, 0.0)
+var hand_distance = 10
 var hand_state = 0 # 0: Idle  1: Extending  2: Latched  3: Pull  4: Push
 
 # Movement Handling
@@ -37,7 +40,7 @@ func position_hand(aim: Vector2):
 	match hand_state:
 		0: # IDLE
 			print(_player_hitbox.shape.radius)
-			_hand.position = _player.position + (_player_hitbox.shape.radius + 100) * aim
+			_hand.position = _player.position + (_player_hitbox.shape.radius + default_hand_distance) * aim
 		1: # EXTEND
 			pass
 		2: # LATCHED
