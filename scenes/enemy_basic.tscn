@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cf32xoa02qjea"]
+
+[ext_resource type="Texture2D" uid="uid://cv27dwc2f204u" path="res://assets/img/player/test_spritesheet.png" id="1_m6u1k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgytw"]
+atlas = ExtResource("1_m6u1k")
+region = Rect2(502, 227, 251, 227)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pc42u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgytw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eefse"]
+radius = 100.0
+
+[node name="Basic Enemy" type="Node2D"]
+
+[node name="BasicEnemy" type="StaticBody2D" parent="."]
+
+[node name="EnemySprite" type="AnimatedSprite2D" parent="BasicEnemy"]
+sprite_frames = SubResource("SpriteFrames_pc42u")
+
+[node name="EnemyHitbox" type="CollisionShape2D" parent="BasicEnemy"]
+shape = SubResource("CircleShape2D_eefse")
+debug_color = Color(0.963857, 0, 0.496227, 0.42)

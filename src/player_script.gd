@@ -16,11 +16,11 @@ extends Node2D
 var player_acceleration = Vector2(0.0, 0.0)
 
 var hand_acceleration = Vector2(0.0, 0.0)
-var hand_distance = 10
+var hand_displacement = Vector2(0.0, 0.0)
 var hand_state = 0 # 0: Idle  1: Extending  2: Latched  3: Pull  4: Push
 
 # Movement Handling
-func process_movement(delta: float):
+func process_movement(delta: float) -> void:
 	var input_direction = Input.get_vector("Left", "Right", "Up", "Down")
 	
 	player_acceleration = input_direction * speed
@@ -33,10 +33,11 @@ func process_movement(delta: float):
 		_player_sprite.play("walk")
 		
 # Hand Handling
-func position_hand(aim: Vector2):
+func position_hand(aim: Vector2) -> void:
 	aim = aim.normalized()
 	print(aim)
-	print(_player_hitbox.shape)
+	hand_displacement = _hand.position - _player.position
+	print(hand_displacement)
 	match hand_state:
 		0: # IDLE
 			print(_player_hitbox.shape.radius)

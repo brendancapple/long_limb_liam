@@ -1,0 +1,101 @@
+[gd_scene load_steps=13 format=3 uid="uid://buk4g4b5iq34l"]
+
+[ext_resource type="Script" path="res://src/player_script.gd" id="1_bumg4"]
+[ext_resource type="Texture2D" uid="uid://cv27dwc2f204u" path="res://assets/img/player/test_spritesheet.png" id="2_3p3de"]
+[ext_resource type="Texture2D" uid="uid://bqwtotp18b86v" path="res://assets/img/player/hand_spritesheet.png" id="3_bubtm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhuue"]
+atlas = ExtResource("2_3p3de")
+region = Rect2(0, 0, 251, 227)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67c7b"]
+atlas = ExtResource("2_3p3de")
+region = Rect2(251, 0, 251, 227)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_278cg"]
+atlas = ExtResource("2_3p3de")
+region = Rect2(502, 0, 251, 227)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oxc6c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhuue")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67c7b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_278cg")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_giv1h"]
+radius = 100.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3c3xk"]
+atlas = ExtResource("3_bubtm")
+region = Rect2(0, 0, 251, 227)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6kuc"]
+atlas = ExtResource("3_bubtm")
+region = Rect2(251, 0, 251, 227)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tkkat"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3c3xk")
+}],
+"loop": true,
+"name": &"hand",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6kuc")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_petbq"]
+radius = 52.2901
+
+[node name="Player Scene" type="Node2D"]
+
+[node name="PlayerRoot" type="Node2D" parent="."]
+script = ExtResource("1_bumg4")
+
+[node name="Player" type="CharacterBody2D" parent="PlayerRoot"]
+collision_layer = 2
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="PlayerRoot/Player"]
+sprite_frames = SubResource("SpriteFrames_oxc6c")
+animation = &"walk"
+
+[node name="PlayerHitbox" type="CollisionShape2D" parent="PlayerRoot/Player"]
+shape = SubResource("CircleShape2D_giv1h")
+debug_color = Color(1.8771e-06, 0.644204, 0.28585, 0.42)
+
+[node name="Hand" type="AnimatableBody2D" parent="PlayerRoot"]
+collision_layer = 8
+
+[node name="HandSprite" type="AnimatedSprite2D" parent="PlayerRoot/Hand"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_tkkat")
+animation = &"open"
+
+[node name="HandHitbox" type="CollisionShape2D" parent="PlayerRoot/Hand"]
+position = Vector2(0, -0.5)
+shape = SubResource("CircleShape2D_petbq")
+one_way_collision_margin = 10.0
