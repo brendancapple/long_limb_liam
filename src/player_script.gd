@@ -11,12 +11,20 @@ extends Node2D
 @export var speed = 400
 @export var friction = 2.0
 
+@export var pull_acceleration = 200
+@export var push_acceleration = 200
+@export var aim_acceleration = 10.0
+@export var hand_friction = 1.0
 @export var default_hand_distance = 10
 
 var player_acceleration = Vector2(0.0, 0.0)
 
 var hand_acceleration = Vector2(0.0, 0.0)
+var hand_velocity = Vector2(0.0, 0.0)
 var hand_displacement = Vector2(0.0, 0.0)
+var hand_target = Vector2(0.0, 0.0)
+
+enum {IDLE, EXTEND, LATCHED, PULL, PUSH}
 var hand_state = 0 # 0: Idle  1: Extending  2: Latched  3: Pull  4: Push
 
 # Movement Handling
@@ -33,28 +41,45 @@ func process_movement(delta: float) -> void:
 		_player_sprite.play("walk")
 		
 # Hand Handling
-func position_hand(aim: Vector2) -> void:
+func position_hand(delta: float, aim: Vector2) -> void:
 	aim = aim.normalized()
 	print(aim)
 	hand_displacement = _hand.position - _player.position
 	print(hand_displacement)
+	
 	match hand_state:
-		0: # IDLE
+		IDLE:
 			print(_player_hitbox.shape.radius)
-			_hand.position = _player.position + (_player_hitbox.shape.radius + default_hand_distance) * aim
-		1: # EXTEND
+			hand_target = _player.position + (_player_hitbox.shape.radius + default_hand_distance) * aim
+			hand_acceleration = (hand_target - _hand.position) * aim_acceleration
+			hand_acceleration -= hand_velocity * hand_friction
+		EXTEND:
 			pass
-		2: # LATCHED
+		LATCHED:
 			pass
-		3: # PULL
+		PULL: 
 			pass
-		4: # PUSH
+		PUSH:
+			
 			pass
 		_: # Default
 			print("Error")
 			pass
+			
+	if hand_acceleration.length() < 1.0:
+		hand_acceleration = Vector2(0.0, 0.0)
+	hand_velocity += hand_acceleration * delta
+	_hand.position += hand_velocity * delta
 	print(_hand.position)
 	print("-")
+	
+func set_hand_state():
+	if Input.is_action_pressed("Pull"):
+		hand_state = PULL
+	elif Input.is_action_pressed("Push"):
+		hand_state = PUSH
+	else:
+		hand_state = IDLE
 
 # Aim Handling
 func process_aim() -> Vector2:
@@ -69,7 +94,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	position_hand(process_aim())
+	set_hand_state()
+	position_hand(delta, process_aim())
 	process_movement(delta)
 	_player.move_and_slide()
 	
