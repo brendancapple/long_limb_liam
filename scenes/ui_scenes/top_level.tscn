@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://du3e4dup8vh02"]
+
+[ext_resource type="Script" path="res://src/ui_scripts/top_level.gd" id="1_f0lcm"]
+[ext_resource type="PackedScene" uid="uid://c5rt1e78bf2b0" path="res://scenes/main_scene.tscn" id="1_oklyv"]
+[ext_resource type="PackedScene" uid="uid://b8vh5qernfq0c" path="res://scenes/sound_related_scenes/music_manager.tscn" id="2_i2jrd"]
+[ext_resource type="PackedScene" uid="uid://b77skwkxh6sm2" path="res://scenes/sound_related_scenes/sfx_manager.tscn" id="3_03v3p"]
+[ext_resource type="PackedScene" uid="uid://dej14c1yjppdu" path="res://scenes/data_related_scenes/data_storage_manager.tscn" id="4_qgh8x"]
+
+[node name="Top Level" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_f0lcm")
+
+[node name="Game Viewport Holder" type="Control" parent="."]
+process_mode = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Viewport Control" type="SubViewportContainer" parent="Game Viewport Holder"]
+layout_mode = 2
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Viewport" type="SubViewport" parent="Game Viewport Holder/Viewport Control"]
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="Main Scene" parent="Game Viewport Holder/Viewport Control/Viewport" instance=ExtResource("1_oklyv")]
+
+[node name="Out of Game UI Manager" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Music Manager" parent="." instance=ExtResource("2_i2jrd")]
+
+[node name="SFX Manager" parent="." instance=ExtResource("3_03v3p")]
+
+[node name="Data Storage Manager" parent="." instance=ExtResource("4_qgh8x")]
