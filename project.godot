@@ -12,9 +12,16 @@ config_version=5
 
 config/name="Long Limb Liam"
 config/version="0.1"
-run/main_scene="res://scenes/main_scene.tscn"
+run/main_scene="res://scenes/ui_scenes/top_level.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/mode=3
+window/stretch/mode="viewport"
 
 [editor]
 
@@ -64,3 +71,8 @@ Pull={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Enemy"
 2d_physics/layer_4="Hand"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
