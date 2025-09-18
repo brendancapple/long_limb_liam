@@ -11,10 +11,14 @@ extends Node2D
 @export var speed = 400
 @export var friction = 2.0
 
-@export var pull_acceleration = 200
-@export var push_acceleration = 200
-@export var aim_acceleration = 10.0
-@export var hand_friction = 1.0
+@export var pull_acceleration = 10.0
+@export var push_acceleration = 10.0
+@export var aim_acceleration = 20.0
+@export var pull_burst = 1000
+@export var push_burst = 1000
+
+@export var hand_static_friction = 2.0
+@export var hand_sliding_friction = 1.0
 @export var default_hand_distance = 10
 
 var player_acceleration = Vector2(0.0, 0.0)
@@ -25,7 +29,25 @@ var hand_displacement = Vector2(0.0, 0.0)
 var hand_target = Vector2(0.0, 0.0)
 
 enum {IDLE, EXTEND, LATCHED, PULL, PUSH}
-var hand_state = 0 # 0: Idle  1: Extending  2: Latched  3: Pull  4: Push
+var hand_state = IDLE
+
+var mouse: Vector2 = Vector2(0,0)
+
+# Physics
+func apply_friction(a: Vector2, v: Vector2, coefficient: float, delta: float) -> Vector2:
+	var output = v - (v * coefficient * delta)
+	if output.dot(v) < 0:
+		print("->", v.dot(v))
+		return Vector2(0,0)
+	return output
+	
+func apply_acceleration(a: Vector2, v: Vector2, delta: float):
+	var output = v + a * delta
+	if output.dot(v) < 0:
+		print("-->", output.dot(v))
+		return Vector2(0, 0)
+	return output
+
 
 # Movement Handling
 func process_movement(delta: float) -> void:
@@ -41,8 +63,10 @@ func process_movement(delta: float) -> void:
 		_player_sprite.play("walk")
 		
 # Hand Handling
-func position_hand(delta: float, aim: Vector2) -> void:
+func position_hand(delta: float, mouse: Vector2, burst: bool) -> void:
+	var aim = mouse - _player.position
 	aim = aim.normalized()
+	
 	print(aim)
 	hand_displacement = _hand.position - _player.position
 	print(hand_displacement)
@@ -52,7 +76,7 @@ func position_hand(delta: float, aim: Vector2) -> void:
 			print(_player_hitbox.shape.radius)
 			hand_target = _player.position + (_player_hitbox.shape.radius + default_hand_distance) * aim
 			hand_acceleration = (hand_target - _hand.position) * aim_acceleration
-			hand_acceleration -= hand_velocity * hand_friction
+			_hand.velocity = apply_friction(hand_acceleration, _hand.velocity, hand_static_friction, delta)
 		EXTEND:
 			pass
 		LATCHED:
@@ -60,32 +84,32 @@ func position_hand(delta: float, aim: Vector2) -> void:
 		PULL: 
 			pass
 		PUSH:
-			
-			pass
-		_: # Default
+			hand_acceleration = (mouse - _hand.position) * push_acceleration
+			_hand.velocity = apply_friction(hand_acceleration, _hand.velocity, hand_sliding_friction, delta)
+			if burst:
+				_hand.velocity += aim * push_burst
+		_:
 			print("Error")
 			pass
 			
-	if hand_acceleration.length() < 1.0:
-		hand_acceleration = Vector2(0.0, 0.0)
-	hand_velocity += hand_acceleration * delta
-	_hand.position += hand_velocity * delta
-	print(_hand.position)
+	_hand.velocity += hand_acceleration * delta
 	print("-")
 	
-func set_hand_state():
+func set_hand_state() -> bool:
 	if Input.is_action_pressed("Pull"):
 		hand_state = PULL
-	elif Input.is_action_pressed("Push"):
+		return Input.is_action_just_pressed("Pull")
+	if Input.is_action_pressed("Push"):
 		hand_state = PUSH
-	else:
-		hand_state = IDLE
+		return Input.is_action_just_pressed("Push")
+	
+	hand_state = IDLE
+	return false
 
 # Aim Handling
-func process_aim() -> Vector2:
+func process_mouse() -> Vector2:
 	var mouse = get_viewport().get_mouse_position()
-	var aim = mouse - _player.position
-	return aim
+	return mouse
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -94,8 +118,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	set_hand_state()
-	position_hand(delta, process_aim())
+	position_hand(delta, process_mouse(), set_hand_state())
 	process_movement(delta)
+	_hand.move_and_slide()
 	_player.move_and_slide()
 	

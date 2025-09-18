@@ -87,7 +87,7 @@ animation = &"walk"
 shape = SubResource("CircleShape2D_giv1h")
 debug_color = Color(1.8771e-06, 0.644204, 0.28585, 0.42)
 
-[node name="Hand" type="AnimatableBody2D" parent="PlayerRoot"]
+[node name="Hand" type="CharacterBody2D" parent="PlayerRoot"]
 collision_layer = 8
 
 [node name="HandSprite" type="AnimatedSprite2D" parent="PlayerRoot/Hand"]
