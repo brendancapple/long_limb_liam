@@ -1,3 +1,5 @@
+res://scenes/utility_scenes
+res://src/utility_scripts
 res://src/ui_scripts
 res://scenes/data_related_scenes
 res://scenes/sound_related_scenes
