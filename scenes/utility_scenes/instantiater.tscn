@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://caqt0tglaghs"]
+
+[ext_resource type="Script" path="res://src/utility_scripts/instantiater.gd" id="1_5d7b2"]
+
+[node name="Instantiater" type="Node"]
+script = ExtResource("1_5d7b2")

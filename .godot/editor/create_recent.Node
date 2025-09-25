@@ -1,5 +1,9 @@
 CharacterBody2D
 Node
+AnimationPlayer
+VBoxContainer
+Button
+ColorRect
 Control
 SubViewport
 SubViewportContainer

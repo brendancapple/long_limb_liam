@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://cujxxvttwldyl"]
+
+[ext_resource type="PackedScene" uid="uid://cc8pw2ldyw70r" path="res://scenes/ui_scenes/button_base.tscn" id="1_0tv7t"]
+[ext_resource type="Script" path="res://src/ui_scripts/ui_propogate_can_be_interacted.gd" id="1_i7xcy"]
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i7xcy")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("1_i7xcy")
+
+[node name="Start Game" parent="Container" instance=ExtResource("1_0tv7t")]
+layout_mode = 2
+text = "Start Game"
+what_method_does_this_button_do = "create_game"
+
+[node name="Settings" parent="Container" instance=ExtResource("1_0tv7t")]
+layout_mode = 2
+text = "Settings"
+
+[node name="Exit Game" parent="Container" instance=ExtResource("1_0tv7t")]
+layout_mode = 2
+text = "Exit"
+what_method_does_this_button_do = "end_runtime"
