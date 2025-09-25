@@ -108,7 +108,7 @@ func set_hand_state() -> bool:
 
 # Aim Handling
 func process_mouse() -> Vector2:
-	var mouse = get_viewport().get_mouse_position()
+	var mouse = get_global_mouse_position() # get_viewport().get_mouse_position()
 	return mouse
 
 # Called when the node enters the scene tree for the first time.

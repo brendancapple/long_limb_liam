@@ -1,11 +1,5 @@
-res://scenes/ui_scenes/in_game_pause_manager.tscn
-res://src/ui_scripts/in_game_pause_manager.gd
-res://scenes/ui_scenes/top_level.tscn
-res://scenes/player_scene.tscn
-res://scenes/utility_scenes/instantiater.tscn
-res://scenes/ui_scenes/main_menu.tscn
-res://scenes/ui_scenes/pause_menu.tscn
 res://scenes/main_scene.tscn
-res://src/ui_scripts/top_level.gd
-res://scenes/ui_scenes/out_of_game_ui_manager.tscn
-res://src/ui_scripts/out_of_game_ui_manager.gd
+res://scenes/ui_scenes/top_level.tscn
+res://scenes/enemy_basic.tscn
+res://scenes/player_scene.tscn
+res://src/player_script.gd
