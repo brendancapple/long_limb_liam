@@ -1,26 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://buk4g4b5iq34l"]
+[gd_scene load_steps=10 format=3 uid="uid://buk4g4b5iq34l"]
 
 [ext_resource type="Script" path="res://src/player_script.gd" id="1_bumg4"]
-[ext_resource type="Texture2D" uid="uid://cv27dwc2f204u" path="res://assets/img/player/test_spritesheet.png" id="2_3p3de"]
-[ext_resource type="Texture2D" uid="uid://bqwtotp18b86v" path="res://assets/img/player/hand_spritesheet.png" id="3_bubtm"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lhuue"]
-atlas = ExtResource("2_3p3de")
-region = Rect2(0, 0, 251, 227)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_67c7b"]
-atlas = ExtResource("2_3p3de")
-region = Rect2(251, 0, 251, 227)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_278cg"]
-atlas = ExtResource("2_3p3de")
-region = Rect2(502, 0, 251, 227)
+[ext_resource type="Texture2D" uid="uid://cckyjrbywe30r" path="res://assets/img/player/Octopodes Sprites.0001.png" id="2_psg1p"]
+[ext_resource type="Texture2D" uid="uid://dgmopqene3y1o" path="res://assets/img/player/Octopodes Sprites.0004.png" id="3_6vcnt"]
+[ext_resource type="Texture2D" uid="uid://uh87chlam1it" path="res://assets/img/player/Octopodes Sprites.0005.png" id="4_ludvy"]
+[ext_resource type="Texture2D" uid="uid://dcglbf67xdp84" path="res://assets/img/player/Octopodes Sprites.0006.png" id="6_jodow"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oxc6c"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lhuue")
+"texture": ExtResource("2_psg1p")
 }],
 "loop": true,
 "name": &"idle",
@@ -28,10 +18,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_67c7b")
+"texture": ExtResource("3_6vcnt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_278cg")
+"texture": ExtResource("4_ludvy")
 }],
 "loop": true,
 "name": &"walk",
@@ -41,19 +31,11 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_giv1h"]
 radius = 100.0
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3c3xk"]
-atlas = ExtResource("3_bubtm")
-region = Rect2(0, 0, 251, 227)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_y6kuc"]
-atlas = ExtResource("3_bubtm")
-region = Rect2(251, 0, 251, 227)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_tkkat"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3c3xk")
+"texture": ExtResource("6_jodow")
 }],
 "loop": true,
 "name": &"hand",
@@ -61,7 +43,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_y6kuc")
+"texture": ExtResource("6_jodow")
 }],
 "loop": true,
 "name": &"open",
@@ -80,8 +62,9 @@ script = ExtResource("1_bumg4")
 collision_layer = 2
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="PlayerRoot/Player"]
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_oxc6c")
-animation = &"walk"
+animation = &"idle"
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="PlayerRoot/Player"]
 shape = SubResource("CircleShape2D_giv1h")
@@ -93,9 +76,9 @@ debug_color = Color(1.8771e-06, 0.644204, 0.28585, 0.42)
 collision_layer = 8
 
 [node name="HandSprite" type="AnimatedSprite2D" parent="PlayerRoot/Hand"]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_tkkat")
-animation = &"open"
+animation = &"hand"
 
 [node name="HandHitbox" type="CollisionShape2D" parent="PlayerRoot/Hand"]
 position = Vector2(0, -0.5)
