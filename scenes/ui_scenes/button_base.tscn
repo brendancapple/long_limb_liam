@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cc8pw2ldyw70r"]
+
+[ext_resource type="Script" path="res://src/ui_scripts/button_base.gd" id="1_belfr"]
+
+[node name="Button Base" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+mouse_filter = 2
+text = "AHHHHH"
+script = ExtResource("1_belfr")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

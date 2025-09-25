@@ -1,6 +1,13 @@
-res://scenes/main_scene.tscn
+res://scenes/ui_scenes/button_base.tscn
+res://src/ui_scripts/button_base.gd
+res://scenes/ui_scenes/main_menu.tscn
 res://scenes/ui_scenes/top_level.tscn
-res://scenes/enemy_basic.tscn
+res://src/ui_scripts/top_level.gd
 res://scenes/player_scene.tscn
 res://scenes/utility_scenes/instantiater.tscn
+res://scenes/ui_scenes/pause_manager.tscn
+res://src/ui_scripts/ui_propogate_can_be_interacted.gd
 res://src/utility_scripts/instantiater.gd
+res://src/ui_scripts/out_of_game_ui_manager.gd
+res://src/ui_scripts/pause_manager.gd
+res://scenes/ui_scenes/out_of_game_ui_manager.tscn
