@@ -1,5 +1,0 @@
-res://scenes/main_scene.tscn
-res://scenes/ui_scenes/top_level.tscn
-res://scenes/enemy_basic.tscn
-res://scenes/player_scene.tscn
-res://src/player_script.gd
