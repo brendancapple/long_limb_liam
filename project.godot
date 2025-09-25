@@ -27,6 +27,12 @@ window/stretch/mode="viewport"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[global_group]
+
+Enemy="things that get grabbed and slap"
+Player=""
+Latchbox=""
+
 [input]
 
 Left={

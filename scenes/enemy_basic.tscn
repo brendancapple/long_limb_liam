@@ -17,13 +17,13 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_eefse"]
-radius = 100.0
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_ecdeq"]
 radius = 92.1358
 
-[node name="Basic Enemy" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_6vv0x"]
+radius = 72.9
+
+[node name="Basic Enemy" type="Node2D" groups=["Enemy"]]
 
 [node name="BasicEnemy" type="StaticBody2D" parent="."]
 collision_layer = 4
@@ -32,9 +32,11 @@ collision_mask = 4
 [node name="EnemySprite" type="AnimatedSprite2D" parent="BasicEnemy"]
 sprite_frames = SubResource("SpriteFrames_pc42u")
 
-[node name="EnemyHitbox" type="CollisionShape2D" parent="BasicEnemy"]
-shape = SubResource("CircleShape2D_eefse")
-debug_color = Color(0.963857, 0, 0.496227, 0.42)
-
-[node name="EnemyLatchbox" type="CollisionShape2D" parent="BasicEnemy"]
+[node name="Collider" type="CollisionShape2D" parent="BasicEnemy" groups=["Enemy", "Latchbox"]]
 shape = SubResource("CircleShape2D_ecdeq")
+
+[node name="Hitbox" type="Area2D" parent="BasicEnemy"]
+
+[node name="HitboxCollider" type="CollisionShape2D" parent="BasicEnemy/Hitbox"]
+shape = SubResource("CircleShape2D_6vv0x")
+one_way_collision_margin = 0.0

@@ -22,9 +22,8 @@ extends Node2D
 @export var default_hand_distance = 100
 
 var player_acceleration = Vector2(0.0, 0.0)
-
 var hand_acceleration = Vector2(0.0, 0.0)
-var hand_velocity = Vector2(0.0, 0.0)
+
 var hand_displacement = Vector2(0.0, 0.0)
 var hand_target = Vector2(0.0, 0.0)
 
@@ -82,8 +81,8 @@ func position_hand(delta: float, mouse: Vector2, burst: bool) -> void:
 			hand_acceleration = (hand_target - _hand.position) * aim_acceleration
 			_hand.velocity = apply_friction(hand_acceleration, _hand.velocity, hand_static_friction, delta)
 		LATCHED:
-			hand_acceleration = (mouse - _hand.position) * push_acceleration
-			_hand.velocity = apply_friction(hand_acceleration, _hand.velocity, hand_sliding_friction, delta)
+			hand_acceleration = Vector2(0,0)
+			_hand.velocity = Vector2(0,0)
 		PULL: 
 			hand_target = _player.position + default_hand_distance  * aim
 			hand_acceleration = (hand_target - _hand.position) * aim_acceleration
@@ -122,6 +121,7 @@ func process_mouse() -> Vector2:
 	var mouse = get_global_mouse_position() # get_viewport().get_mouse_position()
 	return mouse
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -134,3 +134,8 @@ func _process(delta: float) -> void:
 	_hand.move_and_slide()
 	_player.move_and_slide()
 	
+
+# Collision Handling
+func _on_grabbox_area_entered(area: Area2D) -> void:
+	print("Player Collided with: ", area.name)
+	hand_state = LATCHED

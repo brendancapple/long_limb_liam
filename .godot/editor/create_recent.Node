@@ -1,4 +1,5 @@
 CollisionShape2D
+Area2D
 Camera2D
 CharacterBody2D
 Node

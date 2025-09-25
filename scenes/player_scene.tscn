@@ -53,27 +53,27 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_petbq"]
 radius = 50.0
 
-[node name="Player Scene" type="Node2D"]
+[node name="Player Scene" type="Node2D" groups=["Player"]]
 
 [node name="PlayerRoot" type="Node2D" parent="."]
 script = ExtResource("1_bumg4")
 
 [node name="Player" type="CharacterBody2D" parent="PlayerRoot"]
-collision_layer = 2
+collision_layer = 14
+
+[node name="FollowCamera" type="Camera2D" parent="PlayerRoot/Player"]
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="PlayerRoot/Player"]
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_oxc6c")
 animation = &"idle"
 
-[node name="PlayerHitbox" type="CollisionShape2D" parent="PlayerRoot/Player"]
+[node name="Collider" type="CollisionShape2D" parent="PlayerRoot/Player"]
 shape = SubResource("CircleShape2D_giv1h")
 debug_color = Color(1.8771e-06, 0.644204, 0.28585, 0.42)
 
-[node name="Camera2D" type="Camera2D" parent="PlayerRoot/Player"]
-
 [node name="Hand" type="CharacterBody2D" parent="PlayerRoot"]
-collision_layer = 8
+collision_layer = 12
 
 [node name="HandSprite" type="AnimatedSprite2D" parent="PlayerRoot/Hand"]
 z_index = 1
@@ -81,7 +81,17 @@ scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_tkkat")
 animation = &"hand"
 
-[node name="HandHitbox" type="CollisionShape2D" parent="PlayerRoot/Hand"]
+[node name="Collider" type="CollisionShape2D" parent="PlayerRoot/Hand"]
 position = Vector2(0, -0.5)
 shape = SubResource("CircleShape2D_petbq")
 one_way_collision_margin = 10.0
+
+[node name="Grabbox" type="Area2D" parent="PlayerRoot/Hand"]
+scale = Vector2(0.2, 0.2)
+
+[node name="GrabboxCollider" type="CollisionShape2D" parent="PlayerRoot/Hand/Grabbox"]
+position = Vector2(0, -0.5)
+shape = SubResource("CircleShape2D_petbq")
+one_way_collision_margin = 10.0
+
+[connection signal="area_entered" from="PlayerRoot/Hand/Grabbox" to="PlayerRoot" method="_on_grabbox_area_entered"]
