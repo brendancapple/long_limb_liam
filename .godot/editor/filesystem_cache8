@@ -1,53 +1,55 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1758836990
-icon.svg::CompressedTexture2D::2725762375102261675::1758835592::1758836990::1::::<><>::
-::res://addons/::1758835592
-::res://addons/godot-git-plugin/::1758835592
-git_plugin.gdextension::GDExtension::-1::1758835592::0::1::::<><>::
-plugin.cfg::TextFile::-1::1758835592::0::1::::<><>::
-THIRDPARTY.md::TextFile::-1::1758835592::0::1::::<><>::
-::res://addons/godot-git-plugin/linux/::1758835592
-::res://addons/godot-git-plugin/macos/::1758835592
-::res://addons/godot-git-plugin/win64/::1758836789
-::res://assets/::1758835592
-::res://assets/img/::1758835592
-::res://assets/img/player/::1758837000
-hand_spritesheet.png::CompressedTexture2D::3556038138809383247::1758835592::1758836990::1::::<><>::
-Octopodes Sprites.0001.png::CompressedTexture2D::4935337007736200723::1758837000::1758837000::1::::<><>::
-Octopodes Sprites.0002.png::CompressedTexture2D::8796722304526947479::1758837000::1758837000::1::::<><>::
-Octopodes Sprites.0003.png::CompressedTexture2D::8361527716667327949::1758837000::1758837000::1::::<><>::
-Octopodes Sprites.0004.png::CompressedTexture2D::7606045317913473698::1758837000::1758837000::1::::<><>::
-Octopodes Sprites.0005.png::CompressedTexture2D::1420288439565938955::1758837000::1758837000::1::::<><>::
-Octopodes Sprites.0006.png::CompressedTexture2D::7312695989584555907::1758837000::1758837000::1::::<><>::
-test_spritesheet.png::CompressedTexture2D::6304494744132578906::1758835592::1758836990::1::::<><>::
-::res://scenes/::1758836140
-enemy_basic.tscn::PackedScene::5183269331254052988::1758835592::0::1::::<><>::uid://cv27dwc2f204u::::res://assets/img/player/test_spritesheet.png
-main_scene.tscn::PackedScene::6914801412878354943::1758835734::0::1::::<><>::res://src/main_scene.gd<>uid://cb1isajxvwqnf::::res://scenes/ui_scenes/in_game_pause_manager.tscn
-player_scene.tscn::PackedScene::3812614367644377557::1758836140::0::1::::<><>::res://src/player_script.gd<>uid://cv27dwc2f204u::::res://assets/img/player/test_spritesheet.png<>uid://bqwtotp18b86v::::res://assets/img/player/hand_spritesheet.png
-::res://scenes/data_related_scenes/::1758835592
-data_storage_manager.tscn::PackedScene::7460227401567840062::1758835592::0::1::::<><>::
-::res://scenes/sound_related_scenes/::1758835592
-music_manager.tscn::PackedScene::4746483896692747564::1758835592::0::1::::<><>::
-sfx_manager.tscn::PackedScene::4699635704066251587::1758835592::0::1::::<><>::
-::res://scenes/ui_scenes/::1758835734
-button_base.tscn::PackedScene::4982294998196227507::1758835592::0::1::::<><>::res://src/ui_scripts/button_base.gd
-in_game_pause_manager.tscn::PackedScene::4897221927839409695::1758835734::0::1::::<><>::res://src/ui_scripts/in_game_pause_manager.gd
-main_menu.tscn::PackedScene::6196636337261575071::1758835592::0::1::::<><>::uid://cc8pw2ldyw70r::::res://scenes/ui_scenes/button_base.tscn<>res://src/ui_scripts/ui_propogate_can_be_interacted.gd
-out_of_game_ui_manager.tscn::PackedScene::8053255919428838973::1758835734::0::1::::<><>::res://src/ui_scripts/out_of_game_ui_manager.gd
-pause_manager.tscn::PackedScene::7447052415741687289::1758835592::0::1::::<><>::res://src/ui_scripts/pause_manager.gd
-pause_menu.tscn::PackedScene::1571996878303353700::1758835734::0::1::::<><>::res://src/ui_scripts/ui_propogate_can_be_interacted.gd<>uid://cc8pw2ldyw70r::::res://scenes/ui_scenes/button_base.tscn
-top_level.tscn::PackedScene::8621136346140535969::1758835734::0::1::::<><>::res://src/ui_scripts/top_level.gd<>uid://b8vh5qernfq0c::::res://scenes/sound_related_scenes/music_manager.tscn<>uid://b77skwkxh6sm2::::res://scenes/sound_related_scenes/sfx_manager.tscn<>uid://dm0b7il23cx06::::res://scenes/ui_scenes/out_of_game_ui_manager.tscn<>uid://dedn4oife0xhh::::res://scenes/ui_scenes/pause_manager.tscn<>uid://dej14c1yjppdu::::res://scenes/data_related_scenes/data_storage_manager.tscn<>uid://caqt0tglaghs::::res://scenes/utility_scenes/instantiater.tscn
-::res://scenes/utility_scenes/::1758835592
-instantiater.tscn::PackedScene::141384431966878152::1758835592::0::1::::<><>::res://src/utility_scripts/instantiater.gd
-::res://src/::1758836140
-main_scene.gd::GDScript::-1::1758835592::0::1::::<>Node2D<>::
-player_script.gd::GDScript::-1::1758836140::0::1::::<>Node2D<>::
-::res://src/ui_scripts/::1758835592
-button_base.gd::GDScript::-1::1758835592::0::1::::<>Button<>::
-in_game_pause_manager.gd::GDScript::-1::1758835592::0::1::::<>Node<>::
-out_of_game_ui_manager.gd::GDScript::-1::1758835592::0::1::::<>Control<>::
-pause_manager.gd::GDScript::-1::1758835592::0::1::::<>Control<>::
-top_level.gd::GDScript::-1::1758835592::0::1::::<>Control<>::
-ui_propogate_can_be_interacted.gd::GDScript::-1::1758835592::0::1::::<>Control<>::
-::res://src/utility_scripts/::1758835592
-instantiater.gd::GDScript::-1::1758835592::0::1::::<>Node<>::
+::res://::1758837599
+icon.svg::CompressedTexture2D::2725762375102261675::1757880856::1758837600::1::::<><>::
+::res://addons/::1757880969
+::res://addons/godot-git-plugin/::1758227858
+git_plugin.gdextension::GDExtension::-1::1757880969::0::1::::<><>::
+plugin.cfg::TextFile::-1::1757880970::0::1::::<><>::
+THIRDPARTY.md::TextFile::-1::1758227858::0::1::::<><>::
+::res://addons/godot-git-plugin/linux/::1757880969
+::res://addons/godot-git-plugin/macos/::1757880970
+::res://addons/godot-git-plugin/win64/::1758837591
+::res://assets/::1757881118
+::res://assets/img/::1757881137
+::res://assets/img/player/::1758837582
+hand_spritesheet.png::CompressedTexture2D::3556038138809383247::1757883589::1758837600::1::::<><>::
+Octopodes Sprites.0001.png::CompressedTexture2D::4935337007736200723::1758837582::1758837600::1::::<><>::
+Octopodes Sprites.0002.png::CompressedTexture2D::8796722304526947479::1758837582::1758837600::1::::<><>::
+Octopodes Sprites.0003.png::CompressedTexture2D::8361527716667327949::1758837582::1758837600::1::::<><>::
+Octopodes Sprites.0004.png::CompressedTexture2D::7606045317913473698::1758837582::1758837600::1::::<><>::
+Octopodes Sprites.0005.png::CompressedTexture2D::1420288439565938955::1758837582::1758837600::1::::<><>::
+Octopodes Sprites.0006.png::CompressedTexture2D::7312695989584555907::1758837582::1758837600::1::::<><>::
+test_spritesheet.png::CompressedTexture2D::6304494744132578906::1757881300::1758837600::1::::<><>::
+::res://assets/music/::1757881117
+::res://assets/sfx/::1757881102
+::res://scenes/::1758837582
+enemy_basic.tscn::PackedScene::5183269331254052988::1758835724::0::1::::<><>::uid://cv27dwc2f204u::::res://assets/img/player/test_spritesheet.png
+main_scene.tscn::PackedScene::6914801412878354943::1758835724::0::1::::<><>::res://src/main_scene.gd<>uid://cb1isajxvwqnf::::res://scenes/ui_scenes/in_game_pause_manager.tscn
+player_scene.tscn::PackedScene::3812614367644377557::1758837582::0::1::::<><>::res://src/player_script.gd<>uid://cckyjrbywe30r::::res://assets/img/player/Octopodes Sprites.0001.png<>uid://dgmopqene3y1o::::res://assets/img/player/Octopodes Sprites.0004.png<>uid://uh87chlam1it::::res://assets/img/player/Octopodes Sprites.0005.png<>uid://dcglbf67xdp84::::res://assets/img/player/Octopodes Sprites.0006.png
+::res://scenes/data_related_scenes/::1758227858
+data_storage_manager.tscn::PackedScene::7460227401567840062::1758227858::0::1::::<><>::
+::res://scenes/sound_related_scenes/::1758227858
+music_manager.tscn::PackedScene::4746483896692747564::1758227858::0::1::::<><>::
+sfx_manager.tscn::PackedScene::4699635704066251587::1758227858::0::1::::<><>::
+::res://scenes/ui_scenes/::1758835724
+button_base.tscn::PackedScene::4982294998196227507::1758834278::0::1::::<><>::res://src/ui_scripts/button_base.gd
+in_game_pause_manager.tscn::PackedScene::4897221927839409695::1758834278::0::1::::<><>::res://src/ui_scripts/in_game_pause_manager.gd
+main_menu.tscn::PackedScene::6196636337261575071::1758834278::0::1::::<><>::uid://cc8pw2ldyw70r::::res://scenes/ui_scenes/button_base.tscn<>res://src/ui_scripts/ui_propogate_can_be_interacted.gd
+out_of_game_ui_manager.tscn::PackedScene::8053255919428838973::1758834278::0::1::::<><>::res://src/ui_scripts/out_of_game_ui_manager.gd
+pause_manager.tscn::PackedScene::7447052415741687289::1758834278::0::1::::<><>::res://src/ui_scripts/pause_manager.gd
+pause_menu.tscn::PackedScene::1571996878303353700::1758834278::0::1::::<><>::res://src/ui_scripts/ui_propogate_can_be_interacted.gd<>uid://cc8pw2ldyw70r::::res://scenes/ui_scenes/button_base.tscn
+top_level.tscn::PackedScene::8621136346140535969::1758835724::0::1::::<><>::res://src/ui_scripts/top_level.gd<>uid://b8vh5qernfq0c::::res://scenes/sound_related_scenes/music_manager.tscn<>uid://b77skwkxh6sm2::::res://scenes/sound_related_scenes/sfx_manager.tscn<>uid://dm0b7il23cx06::::res://scenes/ui_scenes/out_of_game_ui_manager.tscn<>uid://dedn4oife0xhh::::res://scenes/ui_scenes/pause_manager.tscn<>uid://dej14c1yjppdu::::res://scenes/data_related_scenes/data_storage_manager.tscn<>uid://caqt0tglaghs::::res://scenes/utility_scenes/instantiater.tscn
+::res://scenes/utility_scenes/::1758834278
+instantiater.tscn::PackedScene::141384431966878152::1758834278::0::1::::<><>::res://src/utility_scripts/instantiater.gd
+::res://src/::1758836078
+main_scene.gd::GDScript::-1::1757899146::0::1::::<>Node2D<>::
+player_script.gd::GDScript::-1::1758836078::0::1::::<>Node2D<>::
+::res://src/ui_scripts/::1758834278
+button_base.gd::GDScript::-1::1758834278::0::1::::<>Button<>::
+in_game_pause_manager.gd::GDScript::-1::1758834278::0::1::::<>Node<>::
+out_of_game_ui_manager.gd::GDScript::-1::1758834278::0::1::::<>Control<>::
+pause_manager.gd::GDScript::-1::1758834278::0::1::::<>Control<>::
+top_level.gd::GDScript::-1::1758834278::0::1::::<>Control<>::
+ui_propogate_can_be_interacted.gd::GDScript::-1::1758834278::0::1::::<>Control<>::
+::res://src/utility_scripts/::1758834278
+instantiater.gd::GDScript::-1::1758834278::0::1::::<>Node<>::

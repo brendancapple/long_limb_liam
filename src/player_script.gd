@@ -19,7 +19,7 @@ extends Node2D
 
 @export var hand_static_friction = 2.0
 @export var hand_sliding_friction = 1.0
-@export var default_hand_distance = 10
+@export var default_hand_distance = 100
 
 var player_acceleration = Vector2(0.0, 0.0)
 
@@ -70,19 +70,26 @@ func position_hand(delta: float, mouse: Vector2, burst: bool) -> void:
 	print(aim)
 	hand_displacement = _hand.position - _player.position
 	print(hand_displacement)
+	print(hand_state)
 	
 	match hand_state:
 		IDLE:
-			print(_player_hitbox.shape.radius)
-			hand_target = _player.position + (_player_hitbox.shape.radius + default_hand_distance) * aim
+			hand_target = _player.position + default_hand_distance  * aim
 			hand_acceleration = (hand_target - _hand.position) * aim_acceleration
 			_hand.velocity = apply_friction(hand_acceleration, _hand.velocity, hand_static_friction, delta)
 		EXTEND:
-			pass
+			hand_target = _player.position + default_hand_distance  * aim
+			hand_acceleration = (hand_target - _hand.position) * aim_acceleration
+			_hand.velocity = apply_friction(hand_acceleration, _hand.velocity, hand_static_friction, delta)
 		LATCHED:
-			pass
+			hand_acceleration = (mouse - _hand.position) * push_acceleration
+			_hand.velocity = apply_friction(hand_acceleration, _hand.velocity, hand_sliding_friction, delta)
 		PULL: 
-			pass
+			hand_target = _player.position + default_hand_distance  * aim
+			hand_acceleration = (hand_target - _hand.position) * aim_acceleration
+			_hand.velocity = apply_friction(hand_acceleration, _hand.velocity, hand_sliding_friction, delta)
+			if burst:
+				_hand.velocity -= aim * pull_burst
 		PUSH:
 			hand_acceleration = (mouse - _hand.position) * push_acceleration
 			_hand.velocity = apply_friction(hand_acceleration, _hand.velocity, hand_sliding_friction, delta)
@@ -96,12 +103,16 @@ func position_hand(delta: float, mouse: Vector2, burst: bool) -> void:
 	print("-")
 	
 func set_hand_state() -> bool:
+	var prev = hand_state
 	if Input.is_action_pressed("Pull"):
 		hand_state = PULL
-		return Input.is_action_just_pressed("Pull")
+		return prev == IDLE
 	if Input.is_action_pressed("Push"):
 		hand_state = PUSH
-		return Input.is_action_just_pressed("Push")
+		return prev == IDLE
+		
+	if hand_state == LATCHED:
+		return false
 	
 	hand_state = IDLE
 	return false

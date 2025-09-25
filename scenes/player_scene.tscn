@@ -51,7 +51,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_petbq"]
-radius = 52.2901
+radius = 50.0
 
 [node name="Player Scene" type="Node2D"]
 
@@ -76,7 +76,8 @@ debug_color = Color(1.8771e-06, 0.644204, 0.28585, 0.42)
 collision_layer = 8
 
 [node name="HandSprite" type="AnimatedSprite2D" parent="PlayerRoot/Hand"]
-scale = Vector2(0.1, 0.1)
+z_index = 1
+scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_tkkat")
 animation = &"hand"
 

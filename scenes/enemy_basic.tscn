@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cf32xoa02qjea"]
+[gd_scene load_steps=6 format=3 uid="uid://cf32xoa02qjea"]
 
 [ext_resource type="Texture2D" uid="uid://cv27dwc2f204u" path="res://assets/img/player/test_spritesheet.png" id="1_m6u1k"]
 
@@ -20,6 +20,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_eefse"]
 radius = 100.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ecdeq"]
+radius = 92.1358
+
 [node name="Basic Enemy" type="Node2D"]
 
 [node name="BasicEnemy" type="StaticBody2D" parent="."]
@@ -32,3 +35,6 @@ sprite_frames = SubResource("SpriteFrames_pc42u")
 [node name="EnemyHitbox" type="CollisionShape2D" parent="BasicEnemy"]
 shape = SubResource("CircleShape2D_eefse")
 debug_color = Color(0.963857, 0, 0.496227, 0.42)
+
+[node name="EnemyLatchbox" type="CollisionShape2D" parent="BasicEnemy"]
+shape = SubResource("CircleShape2D_ecdeq")
