@@ -6,6 +6,8 @@ extends Control
 @onready var Pause_Manager = get_node("Pause Manager")
 @onready var UI_Manager = get_node("Out of Game UI Manager")
 
+var game_reference = null
+
 func _ready() -> void:
 	UI_Manager.switch_scene("main_menu")
 	Pause_Manager.start_pause()
@@ -20,15 +22,23 @@ func generic_method_call(which_method_to_call : String, parameter_array = null) 
 
 #Methods to write later
 func create_game()-> void:
+	
 	var new_game = Instantiater.make_instance("res://scenes/main_scene.tscn")
 	Game_Holder.add_child(new_game)
+	game_reference = new_game
 	unpause_game()
 
 func end_game()-> void:
-	pass
+	if !Pause_Manager.is_paused:
+		Pause_Manager.start_pause()
+	if game_reference != null:
+		game_reference.queue_free()
+		UI_Manager.switch_scene("main_menu")
 
 func pause_game()-> void:
 	Pause_Manager.start_pause()
+	if game_reference!= null:
+		UI_Manager.switch_scene("pause_menu")
 
 func unpause_game()-> void:
 	Pause_Manager.unpause_game()

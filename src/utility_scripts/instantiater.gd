@@ -1,6 +1,6 @@
 extends Node
 
-var scenes_to_be_loaded = ["res://scenes/ui_scenes/main_menu.tscn","res://scenes/enemy_basic.tscn", "res://scenes/main_scene.tscn"]
+var scenes_to_be_loaded = ["res://scenes/ui_scenes/pause_menu.tscn","res://scenes/ui_scenes/main_menu.tscn","res://scenes/enemy_basic.tscn", "res://scenes/main_scene.tscn"]
 
 var loaded_scenes = []
 
