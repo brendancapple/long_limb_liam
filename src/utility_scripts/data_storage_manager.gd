@@ -4,7 +4,9 @@ extends Node
 @export var sfx_bus_value = 70
 @export var music_bus_value = 70
 @export var full_screen = false
+@export var current_resolution = 3
 
+var resolution_mappings = { 0: Vector2(1920,1080), 1: Vector2(1440,900), 2: Vector2(1366,768), 3: Vector2(1280,720)}
 
 
 func _ready()->void:
@@ -37,3 +39,12 @@ func toggle_full_screen(new_value) ->void:
 				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 			false:
 				DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+				get_viewport().size = resolution_mappings.get(current_resolution)
+				
+
+func change_screen_value(new_value)->void:
+	if current_resolution!=new_value:
+		current_resolution = new_value
+		if !full_screen:
+			get_viewport().size = resolution_mappings.get(new_value)
+			

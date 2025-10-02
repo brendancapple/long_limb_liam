@@ -1,6 +1,7 @@
-CheckButton
-Label
 HBoxContainer
+Label
+OptionButton
+CheckButton
 HSlider
 VBoxContainer
 CollisionShape2D
@@ -11,5 +12,3 @@ Node
 AnimationPlayer
 Button
 ColorRect
-Control
-SubViewport

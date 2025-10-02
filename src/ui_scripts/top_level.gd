@@ -54,8 +54,11 @@ func back()->void:
 func switch_to(scene_to_switch_to) ->void:
 	UI_Manager.switch_scene(scene_to_switch_to)
 
-func update_bus(which_bus, new_value):
+func update_bus(which_bus, new_value)->void:
 	Data_Manager.update_bus(which_bus, new_value)
 
-func toggle_full_screen(new_value):
+func toggle_full_screen(new_value)->void:
 	Data_Manager.toggle_full_screen(new_value)
+
+func change_screen_value(new_value)->void:
+	Data_Manager.change_screen_value(new_value)
