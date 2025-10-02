@@ -1,5 +1,7 @@
-HSlider
+CheckButton
 Label
+HBoxContainer
+HSlider
 VBoxContainer
 CollisionShape2D
 Area2D
@@ -11,5 +13,3 @@ Button
 ColorRect
 Control
 SubViewport
-SubViewportContainer
-Container

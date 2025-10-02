@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkvah4wsgepvk"]
+[gd_scene load_steps=5 format=3 uid="uid://bkvah4wsgepvk"]
 
 [ext_resource type="Script" path="res://src/ui_scripts/ui_propogate_can_be_interacted.gd" id="1_lvlm7"]
 [ext_resource type="PackedScene" uid="uid://cc8pw2ldyw70r" path="res://scenes/ui_scenes/button_base.tscn" id="2_pc0d7"]
 [ext_resource type="PackedScene" uid="uid://bhrwu25ssg8an" path="res://scenes/ui_scenes/slider.tscn" id="2_ueghp"]
+[ext_resource type="PackedScene" uid="uid://dlhdggij2qslf" path="res://scenes/ui_scenes/check_button.tscn" id="3_7x1lc"]
 
 [node name="Settings Menu" type="Control"]
 layout_mode = 3
@@ -56,6 +57,14 @@ args = [2]
 [node name="Slider Name" parent="Container/Slider3" index="0"]
 text = "Music Volume"
 
+[node name="Check Button" parent="Container" instance=ExtResource("3_7x1lc")]
+layout_mode = 2
+property_to_mirror = "full_screen"
+what_method_does_this_button_do = "toggle_full_screen"
+
+[node name="Actual Check Button" parent="Container/Check Button" index="0"]
+text = "Full Screen            "
+
 [node name="Exit Game" parent="Container" instance=ExtResource("2_pc0d7")]
 layout_mode = 2
 text = "Back"
@@ -64,3 +73,4 @@ what_method_does_this_button_do = "back"
 [editable path="Container/Slider"]
 [editable path="Container/Slider2"]
 [editable path="Container/Slider3"]
+[editable path="Container/Check Button"]

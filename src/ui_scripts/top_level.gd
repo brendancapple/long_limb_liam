@@ -56,3 +56,6 @@ func switch_to(scene_to_switch_to) ->void:
 
 func update_bus(which_bus, new_value):
 	Data_Manager.update_bus(which_bus, new_value)
+
+func toggle_full_screen(new_value):
+	Data_Manager.toggle_full_screen(new_value)

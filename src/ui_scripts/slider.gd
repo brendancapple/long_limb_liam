@@ -20,9 +20,6 @@ func toggle_interactive(yes_or_no):
 	can_be_interacted = yes_or_no
 
 
-
-
-
 func _on_actual_slider_value_changed(value: float) -> void:
 	if can_be_interacted and what_method_does_this_slider_do!="":
 		var package_array = args.duplicate(true)

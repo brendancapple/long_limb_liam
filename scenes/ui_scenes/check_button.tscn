@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlhdggij2qslf"]
+
+[ext_resource type="Script" path="res://src/ui_scripts/check_button.gd" id="1_kto0e"]
+
+[node name="Check Button" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+script = ExtResource("1_kto0e")
+
+[node name="Actual Check Button" type="CheckButton" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[connection signal="toggled" from="Actual Check Button" to="." method="_on_actual_check_button_toggled"]

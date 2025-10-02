@@ -53,6 +53,5 @@ layout_mode = 1
 
 [node name="Data Storage Manager" parent="." instance=ExtResource("4_qgh8x")]
 script = ExtResource("7_e11sw")
-master_bus_value = 20
 
 [node name="Instantiater" parent="." instance=ExtResource("6_sj73f")]
