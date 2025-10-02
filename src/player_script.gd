@@ -60,6 +60,8 @@ func process_movement(delta: float) -> void:
 		_player_sprite.play("idle")
 	else:
 		_player_sprite.play("walk")
+	
+	_player_sprite.set_flip_h(_player.velocity.x<=0)
 		
 # Hand Handling
 func position_hand(delta: float, mouse: Vector2, burst: bool) -> void:
