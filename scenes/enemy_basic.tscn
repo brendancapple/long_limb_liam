@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cf32xoa02qjea"]
+[gd_scene load_steps=7 format=3 uid="uid://cf32xoa02qjea"]
 
 [ext_resource type="Texture2D" uid="uid://cv27dwc2f204u" path="res://assets/img/player/test_spritesheet.png" id="1_m6u1k"]
+[ext_resource type="Script" path="res://src/enemy_scripts/enemy_basic.gd" id="1_m8ltr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jgytw"]
 atlas = ExtResource("1_m6u1k")
@@ -24,6 +25,7 @@ radius = 92.1358
 radius = 72.9
 
 [node name="Basic Enemy" type="Node2D" groups=["Enemy"]]
+script = ExtResource("1_m8ltr")
 
 [node name="BasicEnemy" type="StaticBody2D" parent="."]
 collision_layer = 4
