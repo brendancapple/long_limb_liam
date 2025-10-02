@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bkvah4wsgepvk"]
+[gd_scene load_steps=4 format=3 uid="uid://bkvah4wsgepvk"]
 
 [ext_resource type="Script" path="res://src/ui_scripts/ui_propogate_can_be_interacted.gd" id="1_lvlm7"]
 [ext_resource type="PackedScene" uid="uid://cc8pw2ldyw70r" path="res://scenes/ui_scenes/button_base.tscn" id="2_pc0d7"]
+[ext_resource type="PackedScene" uid="uid://bhrwu25ssg8an" path="res://scenes/ui_scenes/slider.tscn" id="2_ueghp"]
 
 [node name="Settings Menu" type="Control"]
 layout_mode = 3
@@ -28,7 +29,38 @@ grow_vertical = 2
 alignment = 1
 script = ExtResource("1_lvlm7")
 
+[node name="Slider" parent="Container" instance=ExtResource("2_ueghp")]
+layout_mode = 2
+property_to_mirror = "master_bus_value"
+what_method_does_this_slider_do = "update_bus"
+args = [0]
+
+[node name="Slider Name" parent="Container/Slider" index="0"]
+text = "Overall Volume"
+
+[node name="Slider2" parent="Container" instance=ExtResource("2_ueghp")]
+layout_mode = 2
+property_to_mirror = "sfx_bus_value"
+what_method_does_this_slider_do = "update_bus"
+args = [1]
+
+[node name="Slider Name" parent="Container/Slider2" index="0"]
+text = "SFX Volume"
+
+[node name="Slider3" parent="Container" instance=ExtResource("2_ueghp")]
+layout_mode = 2
+property_to_mirror = "music_bus_value"
+what_method_does_this_slider_do = "update_bus"
+args = [2]
+
+[node name="Slider Name" parent="Container/Slider3" index="0"]
+text = "Music Volume"
+
 [node name="Exit Game" parent="Container" instance=ExtResource("2_pc0d7")]
 layout_mode = 2
 text = "Back"
 what_method_does_this_button_do = "back"
+
+[editable path="Container/Slider"]
+[editable path="Container/Slider2"]
+[editable path="Container/Slider3"]

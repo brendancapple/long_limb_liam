@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://du3e4dup8vh02"]
+[gd_scene load_steps=9 format=3 uid="uid://du3e4dup8vh02"]
 
 [ext_resource type="Script" path="res://src/ui_scripts/top_level.gd" id="1_f0lcm"]
 [ext_resource type="PackedScene" uid="uid://b8vh5qernfq0c" path="res://scenes/sound_related_scenes/music_manager.tscn" id="2_i2jrd"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dedn4oife0xhh" path="res://scenes/ui_scenes/pause_manager.tscn" id="3_xw3cs"]
 [ext_resource type="PackedScene" uid="uid://dej14c1yjppdu" path="res://scenes/data_related_scenes/data_storage_manager.tscn" id="4_qgh8x"]
 [ext_resource type="PackedScene" uid="uid://caqt0tglaghs" path="res://scenes/utility_scenes/instantiater.tscn" id="6_sj73f"]
+[ext_resource type="Script" path="res://src/utility_scripts/data_storage_manager.gd" id="7_e11sw"]
 
 [node name="Top Level" type="Control"]
 process_mode = 3
@@ -51,5 +52,7 @@ layout_mode = 1
 [node name="SFX Manager" parent="." instance=ExtResource("3_03v3p")]
 
 [node name="Data Storage Manager" parent="." instance=ExtResource("4_qgh8x")]
+script = ExtResource("7_e11sw")
+master_bus_value = 20
 
 [node name="Instantiater" parent="." instance=ExtResource("6_sj73f")]

@@ -5,6 +5,7 @@ extends Control
 @onready var Game_Holder = get_node("Game Viewport Holder/Viewport Control/Viewport")
 @onready var Pause_Manager = get_node("Pause Manager")
 @onready var UI_Manager = get_node("Out of Game UI Manager")
+@onready var Data_Manager = get_node("Data Storage Manager")
 
 var game_reference = null
 
@@ -52,3 +53,6 @@ func back()->void:
 
 func switch_to(scene_to_switch_to) ->void:
 	UI_Manager.switch_scene(scene_to_switch_to)
+
+func update_bus(which_bus, new_value):
+	Data_Manager.update_bus(which_bus, new_value)

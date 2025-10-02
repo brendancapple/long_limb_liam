@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://bhrwu25ssg8an"]
+
+[ext_resource type="Script" path="res://src/ui_scripts/slider.gd" id="1_agoh1"]
+
+[node name="Slider" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_agoh1")
+
+[node name="Slider Name" type="Label" parent="."]
+layout_mode = 2
+
+[node name="Actual Slider" type="HSlider" parent="."]
+layout_mode = 2
+mouse_filter = 2
+step = 5.0
+value = 70.0
+rounded = true
+scrollable = false
+
+[connection signal="value_changed" from="Actual Slider" to="." method="_on_actual_slider_value_changed"]
