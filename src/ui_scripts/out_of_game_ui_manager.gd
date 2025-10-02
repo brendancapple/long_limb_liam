@@ -2,7 +2,7 @@ extends Control
 
 @onready var Animation_Player = get_node("Animation Player")
 
-var ui_scenes = {"main_menu" : "res://scenes/ui_scenes/main_menu.tscn", "pause_menu" : "res://scenes/ui_scenes/pause_menu.tscn"}
+var ui_scenes = {"settings": "res://scenes/ui_scenes/settings_menu.tscn", "main_menu" : "res://scenes/ui_scenes/main_menu.tscn", "pause_menu" : "res://scenes/ui_scenes/pause_menu.tscn"}
 var current_scene = null
 var last_scene = null
 
@@ -30,3 +30,6 @@ func into_pause_transition() ->void:
 
 func out_of_pause_transition() ->void:
 	Animation_Player.play("Out_Of_Pause")
+
+func get_last() ->String:
+	return last_scene

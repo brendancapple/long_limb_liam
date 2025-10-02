@@ -36,6 +36,8 @@ what_method_does_this_button_do = "create_game"
 [node name="Settings" parent="Container" instance=ExtResource("1_0tv7t")]
 layout_mode = 2
 text = "Settings"
+what_method_does_this_button_do = "switch_to"
+args = ["settings"]
 
 [node name="Exit Game" parent="Container" instance=ExtResource("1_0tv7t")]
 layout_mode = 2

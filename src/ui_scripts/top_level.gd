@@ -45,3 +45,10 @@ func unpause_game()-> void:
 
 func end_runtime()->void:
 	get_tree().quit(0)
+
+func back()->void:
+	if (UI_Manager.get_last()!=null):
+		UI_Manager.switch_scene(UI_Manager.get_last())
+
+func switch_to(scene_to_switch_to) ->void:
+	UI_Manager.switch_scene(scene_to_switch_to)
