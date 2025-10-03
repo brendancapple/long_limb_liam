@@ -22,7 +22,7 @@ animations = [{
 radius = 92.1358
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6vv0x"]
-radius = 102.0
+radius = 72.9
 
 [node name="Basic Enemy" type="Node2D" groups=["Enemy"]]
 
@@ -35,7 +35,7 @@ script = ExtResource("1_m8ltr")
 [node name="EnemySprite" type="AnimatedSprite2D" parent="BasicEnemy"]
 sprite_frames = SubResource("SpriteFrames_pc42u")
 
-[node name="Collider" type="CollisionShape2D" parent="BasicEnemy/EnemySprite" groups=["Enemy", "Latchbox"]]
+[node name="Collider" type="CollisionShape2D" parent="BasicEnemy" groups=["Enemy", "Latchbox"]]
 shape = SubResource("CircleShape2D_ecdeq")
 
 [node name="Hitbox" type="Area2D" parent="BasicEnemy"]

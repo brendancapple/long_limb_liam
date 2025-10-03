@@ -36,14 +36,14 @@ var mouse: Vector2 = Vector2(0,0)
 func apply_friction(a: Vector2, v: Vector2, coefficient: float, delta: float) -> Vector2:
 	var output = v - (v * coefficient * delta)
 	if output.dot(v) < 0:
-		print("->", v.dot(v))
+		#print("->", v.dot(v))
 		return Vector2(0,0)
 	return output
 	
 func apply_acceleration(a: Vector2, v: Vector2, delta: float):
 	var output = v + a * delta
 	if output.dot(v) < 0:
-		print("-->", output.dot(v))
+		#print("-->", output.dot(v))
 		return Vector2(0, 0)
 	return output
 
@@ -66,10 +66,10 @@ func position_hand(delta: float, mouse: Vector2, burst: bool) -> void:
 	var aim = mouse - _player.position
 	aim = aim.normalized()
 	
-	print(aim)
+	#print(aim)
 	hand_displacement = _hand.position - _player.position
-	print(hand_displacement)
-	print(hand_state)
+	#print(hand_displacement)
+	#print(hand_state)
 	
 	match hand_state:
 		IDLE:
@@ -99,10 +99,19 @@ func position_hand(delta: float, mouse: Vector2, burst: bool) -> void:
 			pass
 			
 	_hand.velocity += hand_acceleration * delta
-	print("-")
+	#print("-")
 	
 func set_hand_state() -> bool:
 	var prev = hand_state
+	if prev == LATCHED:
+		if Input.is_action_just_pressed("Pull"):
+			hand_state = PULL
+			return true
+		if Input.is_action_just_pressed("Push"):
+			hand_state = PUSH
+			return true
+		return false
+	
 	if Input.is_action_pressed("Pull"):
 		hand_state = PULL
 		return prev == IDLE
@@ -138,4 +147,5 @@ func _process(delta: float) -> void:
 # Collision Handling
 func _on_grabbox_area_entered(area: Area2D) -> void:
 	print("Player Collided with: ", area.name)
-	hand_state = LATCHED
+	if hand_state != IDLE && area.name == "Hitbox":
+		hand_state = LATCHED
