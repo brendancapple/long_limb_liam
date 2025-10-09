@@ -70,8 +70,10 @@ script = ExtResource("1_bumg4")
 
 [node name="Player" type="CharacterBody2D" parent="PlayerRoot"]
 collision_layer = 14
+collision_mask = 5
 
 [node name="FollowCamera" type="Camera2D" parent="PlayerRoot/Player"]
+position_smoothing_enabled = true
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="PlayerRoot/Player"]
 scale = Vector2(0.25, 0.25)
@@ -85,6 +87,8 @@ shape = SubResource("CircleShape2D_giv1h")
 debug_color = Color(1.8771e-06, 0.644204, 0.28585, 0.42)
 
 [node name="Hitbox" type="Area2D" parent="PlayerRoot/Player" groups=["Player"]]
+collision_layer = 16
+collision_mask = 49
 
 [node name="HitboxCollider" type="CollisionShape2D" parent="PlayerRoot/Player/Hitbox"]
 shape = SubResource("CircleShape2D_crt4b")
@@ -106,6 +110,8 @@ one_way_collision_margin = 10.0
 
 [node name="Grabbox" type="Area2D" parent="PlayerRoot/Hand"]
 scale = Vector2(0.2, 0.2)
+collision_layer = 32
+collision_mask = 49
 
 [node name="GrabboxCollider" type="CollisionShape2D" parent="PlayerRoot/Hand/Grabbox"]
 position = Vector2(0, -0.5)

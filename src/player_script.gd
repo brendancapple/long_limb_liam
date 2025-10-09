@@ -11,7 +11,7 @@ extends Node2D
 @export var max_health = 10
 var health = max_health
 
-@export var speed = 400
+@export var speed = 600
 @export var friction = 2.0
 @export var knockback = 500
 
@@ -45,7 +45,7 @@ func apply_friction(a: Vector2, v: Vector2, coefficient: float, delta: float) ->
 		return Vector2(0,0)
 	return output
 	
-func apply_acceleration(a: Vector2, v: Vector2, delta: float):
+func apply_acceleration(a: Vector2, v: Vector2, delta: float) -> Vector2:
 	var output = v + a * delta
 	if output.dot(v) < 0:
 		#print("-->", output.dot(v))
@@ -57,7 +57,9 @@ func apply_knockback(area: Area2D):
 
 
 ## Health Handling
-
+func process_damage(area):
+	health -= 1
+	print(health)
 
 
 ##  Movement Handling
@@ -164,7 +166,7 @@ func _process(delta: float) -> void:
 ## Collision Handling
 func _on_grabbox_area_entered(area: Area2D) -> void:
 	print("Player Collided with: ", area.name)
-	if hand_state != IDLE && area.name == "Hitbox":
+	if hand_state != IDLE && area.name == "Hitbox" && area.is_in_group("Enemy"):
 		hand_state = LATCHED
 		hand_latchnode = area
 
