@@ -1,19 +1,19 @@
 [gd_scene load_steps=7 format=3 uid="uid://cf32xoa02qjea"]
 
-[ext_resource type="Texture2D" uid="uid://cv27dwc2f204u" path="res://assets/img/player/test_spritesheet.png" id="1_m6u1k"]
 [ext_resource type="Script" path="res://src/enemy_scripts/enemy_basic.gd" id="1_m8ltr"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jgytw"]
-atlas = ExtResource("1_m6u1k")
-region = Rect2(502, 227, 251, 227)
+[ext_resource type="Texture2D" uid="uid://jhn5w1bm28lc" path="res://assets/img/enemy/Octo  Enemy 2.0002.png" id="2_lett2"]
+[ext_resource type="Texture2D" uid="uid://byltexmsvc41i" path="res://assets/img/enemy/Octo  Enemy 2.0003.png" id="3_tfcjd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pc42u"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jgytw")
+"texture": ExtResource("2_lett2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tfcjd")
 }],
-"loop": true,
+"loop": false,
 "name": &"default",
 "speed": 5.0
 }]
@@ -33,7 +33,10 @@ motion_mode = 1
 script = ExtResource("1_m8ltr")
 
 [node name="EnemySprite" type="AnimatedSprite2D" parent="BasicEnemy"]
+scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_pc42u")
+frame = 1
+frame_progress = 1.0
 
 [node name="Collider" type="CollisionShape2D" parent="BasicEnemy/EnemySprite" groups=["Enemy", "Latchbox"]]
 shape = SubResource("CircleShape2D_ecdeq")
