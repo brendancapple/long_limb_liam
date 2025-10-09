@@ -9,6 +9,9 @@ var health = max_health
 @export var drag_acceleration = 5.0
 @export var drag_friction = 0.5
 
+@export var vision_distance = 1000
+@export var vision_rotation = 1
+
 var facing = Vector2(0,-1)
 var acceleration = Vector2(0,0)
 var grabbed = false
@@ -16,6 +19,12 @@ var grabbed = false
 func mouse_displacement() -> Vector2:
 	var mouse = get_global_mouse_position() # get_viewport().get_mouse_position()
 	return mouse - position
+
+func process_vision():
+	var space_state = get_world_2d().direct_space_state
+	var query = PhysicsRayQueryParameters2D.create(global_position, 
+												   global_position + facing*vision_distance)
+	return space_state.intersect_ray(query)
 	
 func apply_friction(a: Vector2, v: Vector2, coefficient: float, delta: float) -> Vector2:
 	var output = v - (v * coefficient * delta)
@@ -30,6 +39,16 @@ func apply_knockback(area: Area2D):
 func process_damage(area):
 	health -= 1
 	print("Enemy: " + str(health))
+	
+func process_pathfinding(delta: float):
+	var line_of_sight = process_vision()
+	#print(line_of_sight.object)
+	if line_of_sight.size() > 0:
+		print(line_of_sight.collider)
+		if line_of_sight.collider.is_in_group("Player"):
+			return
+	facing += Vector2(rotation, -1 * vision_rotation) * delta
+	facing = facing.normalized()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,6 +63,7 @@ func _process(delta: float) -> void:
 		acceleration = drag_acceleration * (get_global_mouse_position() - global_position) * delta
 		velocity += acceleration
 	else:
+		process_pathfinding(delta)
 		velocity += ((speed * facing) - velocity) * delta
 	velocity = apply_friction(acceleration, velocity, drag_friction, delta)
 	move_and_slide()
