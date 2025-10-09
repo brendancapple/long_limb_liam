@@ -44,5 +44,5 @@ shape = SubResource("CircleShape2D_ecdeq")
 shape = SubResource("CircleShape2D_6vv0x")
 one_way_collision_margin = 0.0
 
-[connection signal="area_entered" from="BasicEnemy/Hitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="area_exited" from="BasicEnemy/Hitbox" to="." method="_on_hitbox_area_exited"]
+[connection signal="area_entered" from="BasicEnemy/Hitbox" to="BasicEnemy" method="_on_hitbox_area_entered"]
+[connection signal="area_exited" from="BasicEnemy/Hitbox" to="BasicEnemy" method="_on_hitbox_area_exited"]

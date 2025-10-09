@@ -3,10 +3,10 @@ extends Node2D
 # Member Variables
 @onready var _player = $Player
 @onready var _player_sprite = $Player/PlayerSprite
-@onready var _player_hitbox = $Player/PlayerHitbox
+@onready var _player_hitbox = $Player/Collider
 @onready var _hand = $Hand
 @onready var _hand_sprite = $Hand/HandSprite
-@onready var _hand_hitbox = $Hand/HandHitbox
+@onready var _hand_hitbox = $Hand/Grabbox
 
 @export var speed = 400
 @export var friction = 2.0

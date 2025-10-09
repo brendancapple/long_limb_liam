@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var drag_acceleration = 10.0
+@export var drag_acceleration = 5.0
 @export var drag_friction = 0.5
 
 var acceleration = Vector2(0,0)
