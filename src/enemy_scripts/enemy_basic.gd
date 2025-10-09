@@ -27,12 +27,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	print(grabbed)
+	#print(grabbed)
 	if grabbed:
 		acceleration = drag_acceleration * (get_global_mouse_position() - global_position) * delta
 		velocity += acceleration
 	velocity = apply_friction(acceleration, velocity, drag_friction, delta)
 	move_and_slide()
+		
 
 
 func _on_hitbox_area_entered(area: Area2D) -> void:

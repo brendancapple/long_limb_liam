@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://jhn5w1bm28lc" path="res://assets/img/enemy/Octo  Enemy 2.0002.png" id="2_lett2"]
 [ext_resource type="Texture2D" uid="uid://byltexmsvc41i" path="res://assets/img/enemy/Octo  Enemy 2.0003.png" id="3_tfcjd"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ecdeq"]
+radius = 92.1358
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_pc42u"]
 animations = [{
 "frames": [{
@@ -18,9 +21,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ecdeq"]
-radius = 92.1358
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_6vv0x"]
 radius = 102.0
 
@@ -32,16 +32,17 @@ collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_m8ltr")
 
+[node name="Collider" type="CollisionShape2D" parent="BasicEnemy" groups=["Enemy", "Latchbox"]]
+scale = Vector2(0.2, 0.2)
+shape = SubResource("CircleShape2D_ecdeq")
+
 [node name="EnemySprite" type="AnimatedSprite2D" parent="BasicEnemy"]
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_pc42u")
 frame = 1
 frame_progress = 1.0
 
-[node name="Collider" type="CollisionShape2D" parent="BasicEnemy/EnemySprite" groups=["Enemy", "Latchbox"]]
-shape = SubResource("CircleShape2D_ecdeq")
-
-[node name="Hitbox" type="Area2D" parent="BasicEnemy"]
+[node name="Hitbox" type="Area2D" parent="BasicEnemy" groups=["Enemy"]]
 
 [node name="HitboxCollider" type="CollisionShape2D" parent="BasicEnemy/Hitbox"]
 shape = SubResource("CircleShape2D_6vv0x")

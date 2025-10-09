@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://buk4g4b5iq34l"]
+[gd_scene load_steps=12 format=3 uid="uid://buk4g4b5iq34l"]
 
 [ext_resource type="Script" path="res://src/player_script.gd" id="1_bumg4"]
 [ext_resource type="Texture2D" uid="uid://gyphx0ows2kv" path="res://assets/img/player/Octopodes Sprites 2.0001.png" id="2_r8vru"]
@@ -36,7 +36,10 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_giv1h"]
-radius = 100.0
+radius = 90.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_crt4b"]
+radius = 102.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tkkat"]
 animations = [{
@@ -81,8 +84,14 @@ frame_progress = 0.65532
 shape = SubResource("CircleShape2D_giv1h")
 debug_color = Color(1.8771e-06, 0.644204, 0.28585, 0.42)
 
+[node name="Hitbox" type="Area2D" parent="PlayerRoot/Player" groups=["Player"]]
+
+[node name="HitboxCollider" type="CollisionShape2D" parent="PlayerRoot/Player/Hitbox"]
+shape = SubResource("CircleShape2D_crt4b")
+one_way_collision_margin = 0.0
+
 [node name="Hand" type="CharacterBody2D" parent="PlayerRoot"]
-collision_layer = 12
+collision_layer = 8
 
 [node name="HandSprite" type="AnimatedSprite2D" parent="PlayerRoot/Hand"]
 z_index = 1
@@ -103,4 +112,5 @@ position = Vector2(0, -0.5)
 shape = SubResource("CircleShape2D_petbq")
 one_way_collision_margin = 10.0
 
+[connection signal="area_entered" from="PlayerRoot/Player/Hitbox" to="PlayerRoot" method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="PlayerRoot/Hand/Grabbox" to="PlayerRoot" method="_on_grabbox_area_entered"]

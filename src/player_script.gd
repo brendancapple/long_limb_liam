@@ -3,13 +3,17 @@ extends Node2D
 # Member Variables
 @onready var _player = $Player
 @onready var _player_sprite = $Player/PlayerSprite
-@onready var _player_hitbox = $Player/Collider
+# @onready var _player_hitbox = $Player/Collider
 @onready var _hand = $Hand
 @onready var _hand_sprite = $Hand/HandSprite
-@onready var _hand_hitbox = $Hand/Grabbox
+# @onready var _hand_hitbox = $Hand/Grabbox
+
+@export var max_health = 10
+var health = max_health
 
 @export var speed = 400
 @export var friction = 2.0
+@export var knockback = 500
 
 @export var pull_acceleration = 10.0
 @export var push_acceleration = 10.0
@@ -22,17 +26,18 @@ extends Node2D
 @export var default_hand_distance = 100
 
 var player_acceleration = Vector2(0.0, 0.0)
-var hand_acceleration = Vector2(0.0, 0.0)
 
+var hand_acceleration = Vector2(0.0, 0.0)
 var hand_displacement = Vector2(0.0, 0.0)
 var hand_target = Vector2(0.0, 0.0)
 
 enum {IDLE, EXTEND, LATCHED, PULL, PUSH}
 var hand_state = IDLE
+var hand_latchnode: Area2D = null
 
 var mouse: Vector2 = Vector2(0,0)
 
-# Physics
+## Physics
 func apply_friction(a: Vector2, v: Vector2, coefficient: float, delta: float) -> Vector2:
 	var output = v - (v * coefficient * delta)
 	if output.dot(v) < 0:
@@ -46,9 +51,16 @@ func apply_acceleration(a: Vector2, v: Vector2, delta: float):
 		#print("-->", output.dot(v))
 		return Vector2(0, 0)
 	return output
+	
+func apply_knockback(area: Area2D):
+	_player.velocity -= (area.global_position - _player.global_position).normalized() * knockback
 
 
-# Movement Handling
+## Health Handling
+
+
+
+##  Movement Handling
 func process_movement(delta: float) -> void:
 	var input_direction = Input.get_vector("Left", "Right", "Up", "Down")
 	
@@ -63,7 +75,7 @@ func process_movement(delta: float) -> void:
 	
 	_player_sprite.set_flip_h(_player.velocity.x<=0)
 		
-# Hand Handling
+## Hand Handling
 func position_hand(delta: float, mouse: Vector2, burst: bool) -> void:
 	var aim = mouse - _player.position
 	aim = aim.normalized()
@@ -85,6 +97,7 @@ func position_hand(delta: float, mouse: Vector2, burst: bool) -> void:
 		LATCHED:
 			hand_acceleration = Vector2(0,0)
 			_hand.velocity = Vector2(0,0)
+			_hand.global_position = hand_latchnode.global_position
 		PULL: 
 			hand_target = _player.position + default_hand_distance  * aim
 			hand_acceleration = (hand_target - _hand.position) * aim_acceleration
@@ -127,11 +140,13 @@ func set_hand_state() -> bool:
 	hand_state = IDLE
 	return false
 
-# Aim Handling
+## Aim Handling
 func process_mouse() -> Vector2:
 	var mouse = get_global_mouse_position() # get_viewport().get_mouse_position()
 	return mouse
 
+
+## Godot
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -146,8 +161,18 @@ func _process(delta: float) -> void:
 	_player.move_and_slide()
 	
 
-# Collision Handling
+## Collision Handling
 func _on_grabbox_area_entered(area: Area2D) -> void:
 	print("Player Collided with: ", area.name)
 	if hand_state != IDLE && area.name == "Hitbox":
 		hand_state = LATCHED
+		hand_latchnode = area
+
+
+func _on_hitbox_area_entered(area: Area2D) -> void:
+	print(area.get_groups())
+	if area.is_in_group("Enemy"):
+		apply_knockback(area)
+		health -= 1
+		print(health)
+	pass # Replace with function body.
