@@ -1,3 +1,4 @@
+class_name Player
 extends Node2D
 
 # Member Variables
@@ -177,4 +178,8 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 		apply_knockback(area)
 		health -= 1
 		print(health)
+	pass # Replace with function body.
+
+
+func _on_grabbox_area_exited(area: Area2D) -> void:
 	pass # Replace with function body.

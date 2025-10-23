@@ -64,59 +64,58 @@ animations = [{
 radius = 50.0
 
 [node name="Player Scene" type="Node2D" groups=["Player"]]
-
-[node name="PlayerRoot" type="Node2D" parent="."]
 script = ExtResource("1_bumg4")
 
-[node name="Player" type="CharacterBody2D" parent="PlayerRoot"]
+[node name="Player" type="CharacterBody2D" parent="."]
 collision_layer = 14
 collision_mask = 5
 
-[node name="FollowCamera" type="Camera2D" parent="PlayerRoot/Player"]
+[node name="FollowCamera" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true
 
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="PlayerRoot/Player"]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="Player"]
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_oxc6c")
 animation = &"walk"
 frame = 2
 frame_progress = 0.65532
 
-[node name="Collider" type="CollisionShape2D" parent="PlayerRoot/Player"]
+[node name="Collider" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CircleShape2D_giv1h")
 debug_color = Color(1.8771e-06, 0.644204, 0.28585, 0.42)
 
-[node name="Hitbox" type="Area2D" parent="PlayerRoot/Player" groups=["Player"]]
+[node name="Hitbox" type="Area2D" parent="Player" groups=["Player"]]
 collision_layer = 16
 collision_mask = 49
 
-[node name="HitboxCollider" type="CollisionShape2D" parent="PlayerRoot/Player/Hitbox"]
+[node name="HitboxCollider" type="CollisionShape2D" parent="Player/Hitbox"]
 shape = SubResource("CircleShape2D_crt4b")
 one_way_collision_margin = 0.0
 
-[node name="Hand" type="CharacterBody2D" parent="PlayerRoot"]
+[node name="Hand" type="CharacterBody2D" parent="."]
 collision_layer = 8
 
-[node name="HandSprite" type="AnimatedSprite2D" parent="PlayerRoot/Hand"]
+[node name="HandSprite" type="AnimatedSprite2D" parent="Hand"]
 z_index = 1
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_tkkat")
 animation = &"hand"
 
-[node name="Collider" type="CollisionShape2D" parent="PlayerRoot/Hand"]
+[node name="Collider" type="CollisionShape2D" parent="Hand"]
 position = Vector2(0, -0.5)
 shape = SubResource("CircleShape2D_petbq")
 one_way_collision_margin = 10.0
 
-[node name="Grabbox" type="Area2D" parent="PlayerRoot/Hand"]
+[node name="Grabbox" type="Area2D" parent="Hand" groups=["Player"]]
 scale = Vector2(0.2, 0.2)
 collision_layer = 32
 collision_mask = 49
 
-[node name="GrabboxCollider" type="CollisionShape2D" parent="PlayerRoot/Hand/Grabbox"]
+[node name="GrabboxCollider" type="CollisionShape2D" parent="Hand/Grabbox"]
 position = Vector2(0, -0.5)
 shape = SubResource("CircleShape2D_petbq")
 one_way_collision_margin = 10.0
 
-[connection signal="area_entered" from="PlayerRoot/Player/Hitbox" to="PlayerRoot" method="_on_hitbox_area_entered"]
-[connection signal="area_entered" from="PlayerRoot/Hand/Grabbox" to="PlayerRoot" method="_on_grabbox_area_entered"]
+[connection signal="area_entered" from="Player/Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="Hand/Grabbox" to="." method="_on_grabbox_area_entered"]
+[connection signal="area_exited" from="Hand/Grabbox" to="." method="_on_grabbox_area_exited"]

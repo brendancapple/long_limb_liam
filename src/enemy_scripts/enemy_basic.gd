@@ -1,9 +1,13 @@
+class_name Enemy
 extends CharacterBody2D
+
+@onready var _parent = get_parent()
 
 @export var max_health = 2
 var health = max_health
 
 @export var speed = 200
+@export var rotation_speed = PI/5
 @export var knockback = 500
 
 @export var drag_acceleration = 5.0
@@ -19,12 +23,6 @@ var grabbed = false
 func mouse_displacement() -> Vector2:
 	var mouse = get_global_mouse_position() # get_viewport().get_mouse_position()
 	return mouse - position
-
-func process_vision():
-	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsRayQueryParameters2D.create(global_position, 
-												   global_position + facing*vision_distance)
-	return space_state.intersect_ray(query)
 	
 func apply_friction(a: Vector2, v: Vector2, coefficient: float, delta: float) -> Vector2:
 	var output = v - (v * coefficient * delta)
@@ -41,14 +39,15 @@ func process_damage(area):
 	print("Enemy: " + str(health))
 	
 func process_pathfinding(delta: float):
-	var line_of_sight = process_vision()
-	#print(line_of_sight.object)
-	if line_of_sight.size() > 0:
-		print(line_of_sight.collider)
-		if line_of_sight.collider.is_in_group("Player"):
-			return
-	facing += Vector2(rotation, -1 * vision_rotation) * delta
-	facing = facing.normalized()
+	var displacement = _parent.player._player.get_global_position() - get_global_position()
+	var ang_displacement = tan(displacement[1] / displacement[0])
+	if displacement[0] < 0:
+		ang_displacement += PI
+	var rot_displacement = ang_displacement - rotation
+	if rot_displacement != 0:
+		rot_displacement = 1 if rot_displacement > 0 else -1
+	rotation += rot_displacement * rotation_speed * delta
+	position += Vector2(cos(rotation), sin(rotation)) * speed * delta
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
