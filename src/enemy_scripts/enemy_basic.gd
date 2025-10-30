@@ -2,6 +2,7 @@ class_name Enemy
 extends CharacterBody2D
 
 @onready var _parent = get_parent()
+@export var player: Player
 
 @export var max_health = 2
 var health = max_health
@@ -37,17 +38,17 @@ func apply_knockback(area: Area2D):
 func process_damage(area):
 	health -= 1
 	print("Enemy: " + str(health))
+	if health <= 0:
+		die()
+	
+func die():
+	queue_free()
 	
 func process_pathfinding(delta: float):
-	var displacement = _parent.player._player.get_global_position() - get_global_position()
-	var ang_displacement = tan(displacement[1] / displacement[0])
-	if displacement[0] < 0:
-		ang_displacement += PI
-	var rot_displacement = ang_displacement - rotation
-	if rot_displacement != 0:
-		rot_displacement = 1 if rot_displacement > 0 else -1
-	rotation += rot_displacement * rotation_speed * delta
-	position += Vector2(cos(rotation), sin(rotation)) * speed * delta
+	if not is_instance_valid(player):
+		return
+	var displacement = player._player.get_global_position() - get_global_position()
+	position += speed * displacement.normalized() * delta
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

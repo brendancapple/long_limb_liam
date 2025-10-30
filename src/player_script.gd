@@ -61,7 +61,11 @@ func apply_knockback(area: Area2D):
 func process_damage(area):
 	health -= 1
 	print(health)
+	if health >= 0:
+		die()
 
+func die():
+	queue_free()
 
 ##  Movement Handling
 func process_movement(delta: float) -> void:
@@ -100,7 +104,10 @@ func position_hand(delta: float, mouse: Vector2, burst: bool) -> void:
 		LATCHED:
 			hand_acceleration = Vector2(0,0)
 			_hand.velocity = Vector2(0,0)
-			_hand.global_position = hand_latchnode.global_position
+			if is_instance_valid(hand_latchnode):
+				_hand.global_position = hand_latchnode.global_position
+			else:
+				hand_state = IDLE
 		PULL: 
 			hand_target = _player.position + default_hand_distance  * aim
 			hand_acceleration = (hand_target - _hand.position) * aim_acceleration
@@ -117,6 +124,15 @@ func position_hand(delta: float, mouse: Vector2, burst: bool) -> void:
 			pass
 			
 	_hand.velocity += hand_acceleration * delta
+	
+	# Rotation
+	var displacement = _hand.position - _player.position
+	if displacement.x != 0:
+		var rot = atan(displacement.y/displacement.x)
+		if displacement.x < 0:
+			rot += PI
+		_hand.rotation = rot
+	
 	#print("-")
 	
 func set_hand_state() -> bool:
@@ -176,8 +192,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	print(area.get_groups())
 	if area.is_in_group("Enemy"):
 		apply_knockback(area)
-		health -= 1
-		print(health)
+		process_damage(area)
 	pass # Replace with function body.
 
 
