@@ -8,6 +8,8 @@ extends Node2D
 @onready var _hand = $Hand
 @onready var _hand_sprite = $Hand/HandSprite
 # @onready var _hand_hitbox = $Hand/Grabbox
+@onready var _hud = $Player/FollowCamera/HUD
+@onready var _hud_healthbar = $Player/FollowCamera/HUD/Healthbar
 
 @export var max_health = 10
 var health = max_health
@@ -60,8 +62,9 @@ func apply_knockback(area: Area2D):
 ## Health Handling
 func process_damage(area):
 	health -= 1
+	_hud_healthbar.value = health
 	print(health)
-	if health >= 0:
+	if health <= 0:
 		die()
 
 func die():
@@ -169,6 +172,8 @@ func process_mouse() -> Vector2:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	_hud.position -= 0.5 * get_viewport().size
+	_hud_healthbar.max_value = max_health
 	pass # Replace with function body.
 
 
