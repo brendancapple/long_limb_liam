@@ -51,7 +51,6 @@ alignment = 1
 script = ExtResource("1_i7xcy")
 
 [node name="Start Game" parent="Container/Other Container 1" instance=ExtResource("1_0tv7t")]
-custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
@@ -59,7 +58,6 @@ text = "Start Game"
 what_method_does_this_button_do = "create_game"
 
 [node name="Settings" parent="Container/Other Container 1" instance=ExtResource("1_0tv7t")]
-custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
@@ -75,7 +73,6 @@ alignment = 1
 script = ExtResource("1_i7xcy")
 
 [node name="Credits" parent="Container/Other Container 2" instance=ExtResource("1_0tv7t")]
-custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
@@ -84,7 +81,6 @@ what_method_does_this_button_do = "switch_to"
 args = ["credits"]
 
 [node name="Exit Game" parent="Container/Other Container 2" instance=ExtResource("1_0tv7t")]
-custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4

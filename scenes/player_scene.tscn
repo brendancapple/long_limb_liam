@@ -144,24 +144,6 @@ collision_mask = 5
 position_smoothing_enabled = true
 position_smoothing_speed = 1.0
 
-[node name="HUD" type="Control" parent="Player/FollowCamera"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Health" type="Label" parent="Player/FollowCamera/HUD"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="Healthbar" type="ProgressBar" parent="Player/FollowCamera/HUD"]
-layout_mode = 0
-offset_right = 26.0
-offset_bottom = 359.0
-value = 100.0
-fill_mode = 2
-
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="Player"]
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_oxc6c")
@@ -202,6 +184,26 @@ collision_mask = 49
 position = Vector2(0, -0.5)
 shape = SubResource("CircleShape2D_petbq")
 one_way_collision_margin = 10.0
+
+[node name="HUDLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="HUDLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Health" type="Label" parent="HUDLayer/HUD"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Healthbar" type="ProgressBar" parent="HUDLayer/HUD"]
+layout_mode = 0
+offset_right = 26.0
+offset_bottom = 359.0
+value = 100.0
+fill_mode = 2
 
 [connection signal="area_entered" from="Player/Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="Hand/Grabbox" to="." method="_on_grabbox_area_entered"]

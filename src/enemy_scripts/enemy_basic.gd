@@ -2,6 +2,7 @@ class_name Enemy
 extends CharacterBody2D
 
 @onready var _parent = get_parent()
+@onready var _sprite = $EnemySprite
 @export var player: Player
 
 @export var max_health = 2
@@ -53,7 +54,7 @@ func process_pathfinding(delta: float):
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	velocity = Vector2(0,0)
-	pass # Replace with function body.
+	_sprite.play("default")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
