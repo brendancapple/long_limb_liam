@@ -5,6 +5,7 @@ var scenes_to_be_loaded = [
 	"res://scenes/ui_scenes/pause_menu.tscn",
 	"res://scenes/ui_scenes/main_menu.tscn",
 	"res://scenes/ui_scenes/credits_menu.tscn",
+	"res://scenes/ui_scenes/end_scene.tscn",
 	"res://scenes/enemy_basic.tscn", 
 	"res://scenes/main_scene.tscn",
 	"res://scenes/player_scene.tscn"

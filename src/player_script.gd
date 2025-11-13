@@ -69,6 +69,7 @@ func process_damage(area):
 
 func die():
 	queue_free()
+	get_tree().get_root().get_child(0).end_game()
 
 ##  Movement Handling
 func process_movement(delta: float) -> void:

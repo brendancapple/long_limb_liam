@@ -34,7 +34,8 @@ func end_game()-> void:
 		Pause_Manager.start_pause()
 	if game_reference != null:
 		game_reference.queue_free()
-		UI_Manager.switch_scene("main_menu")
+		UI_Manager.switch_scene("end_scene")
+
 
 func pause_game()-> void:
 	Pause_Manager.start_pause()
