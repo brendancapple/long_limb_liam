@@ -12,7 +12,7 @@ extends Node2D
 @onready var _hud = $Player/HUDLayer/HUD
 @onready var _hud_healthbar = $HUDLayer/HUD/Healthbar
 
-@export var max_health = 10
+@export var max_health = 5
 var health = max_health
 
 @export var speed = 600

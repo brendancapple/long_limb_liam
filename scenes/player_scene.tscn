@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://buk4g4b5iq34l"]
+[gd_scene load_steps=29 format=3 uid="uid://buk4g4b5iq34l"]
 
 [ext_resource type="Script" path="res://src/player_script.gd" id="1_bumg4"]
 [ext_resource type="Texture2D" uid="uid://gyphx0ows2kv" path="res://assets/img/player/Octopodes Sprites 2.0001.png" id="2_r8vru"]
@@ -21,6 +21,8 @@
 [ext_resource type="Texture2D" uid="uid://dkpiewg7gj3v1" path="res://assets/img/player/Octopodes Sprites 2.0006.png" id="18_r2ysv"]
 [ext_resource type="Texture2D" uid="uid://bbutxhudj37rm" path="res://assets/img/player/Octopodes Sprites 2.0007.png" id="19_mxdqn"]
 [ext_resource type="Texture2D" uid="uid://wgf2vu7k6ela" path="res://assets/img/player/Octopodes Sprites 2.0008.png" id="20_6yk7q"]
+[ext_resource type="Texture2D" uid="uid://b2pagg5ynmout" path="res://assets/img/ui/Hearts.0002.png" id="22_7uoy0"]
+[ext_resource type="Texture2D" uid="uid://be3l3ed5gmbk" path="res://assets/img/ui/Hearts.0001.png" id="23_5766m"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oxc6c"]
 animations = [{
@@ -194,17 +196,17 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Health" type="Label" parent="HUDLayer/HUD"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-
-[node name="Healthbar" type="ProgressBar" parent="HUDLayer/HUD"]
-layout_mode = 0
-offset_right = 26.0
-offset_bottom = 359.0
+[node name="Healthbar" type="TextureProgressBar" parent="HUDLayer/HUD"]
+layout_mode = 2
+offset_left = 10.0
+offset_right = 102.0
+offset_bottom = 448.0
 value = 100.0
 fill_mode = 2
+nine_patch_stretch = true
+stretch_margin_left = 3
+texture_under = ExtResource("22_7uoy0")
+texture_progress = ExtResource("23_5766m")
 
 [connection signal="area_entered" from="Player/Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="Hand/Grabbox" to="." method="_on_grabbox_area_entered"]

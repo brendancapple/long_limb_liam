@@ -21,4 +21,6 @@ func spawn_enemy(filename: String, pos: Vector2) -> void:
 
 func _on_spawn_timer_timeout() -> void:
 	spawn_location.progress_ratio = randf()
-	spawn_enemy("res://scenes/enemy_basic.tscn", spawn_location.position)
+	
+	var spawn_pos = Vector2(randf()-0.5, randf()-0.5).normalized() * 1400
+	spawn_enemy("res://scenes/enemy_basic.tscn", spawn_pos)
