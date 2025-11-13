@@ -86,7 +86,16 @@ func process_movement(delta: float) -> void:
 		_player_sprite.play("walk")
 	
 	_player_sprite.set_flip_h(_player.velocity.x<=0)
-		
+	
+	if _player.position.x > 1500:
+		_player.velocity.x -= 2 * speed * delta
+	if _player.position.x < -1500:
+		_player.velocity.x += 2 * speed * delta
+	if _player.position.y > 1500:
+		_player.velocity.y -= 2 * speed * delta
+	if _player.position.y < -1500:
+		_player.velocity.y += 2 * speed * delta
+
 ## Hand Handling
 func position_hand(delta: float, mouse: Vector2, burst: bool) -> void:
 	var aim = mouse - _player.position
@@ -182,8 +191,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	position_hand(delta, process_mouse(), set_hand_state())
 	process_movement(delta)
-	_hand.move_and_slide()
-	_player.move_and_slide()
+	_hand.move_and_collide(_hand.velocity * delta)
+	_player.move_and_collide(_player.velocity * delta)
 	
 
 ## Collision Handling
@@ -199,8 +208,6 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Enemy"):
 		apply_knockback(area)
 		process_damage(area)
-	pass # Replace with function body.
-
 
 func _on_grabbox_area_exited(area: Area2D) -> void:
 	pass # Replace with function body.

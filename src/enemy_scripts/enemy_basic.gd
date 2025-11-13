@@ -67,7 +67,7 @@ func _process(delta: float) -> void:
 		process_pathfinding(delta)
 		velocity += ((speed * facing) - velocity) * delta
 	velocity = apply_friction(acceleration, velocity, drag_friction, delta)
-	move_and_slide()
+	move_and_collide(self.velocity * delta)
 		
 
 
@@ -78,6 +78,8 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.name == "Hitbox":
 		apply_knockback(area)
 		process_damage(area)
+	if area.is_in_group("BG"):
+		self.velocity = -self.velocity
 
 
 func _on_hitbox_area_exited(area: Area2D) -> void:

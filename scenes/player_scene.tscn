@@ -163,6 +163,7 @@ one_way_collision_margin = 0.0
 
 [node name="Hand" type="CharacterBody2D" parent="."]
 collision_layer = 8
+collision_mask = 0
 
 [node name="HandSprite" type="AnimatedSprite2D" parent="Hand"]
 z_index = 1
@@ -178,7 +179,7 @@ one_way_collision_margin = 10.0
 [node name="Grabbox" type="Area2D" parent="Hand" groups=["Player"]]
 scale = Vector2(0.2, 0.2)
 collision_layer = 32
-collision_mask = 49
+collision_mask = 48
 
 [node name="GrabboxCollider" type="CollisionShape2D" parent="Hand/Grabbox"]
 position = Vector2(0, -0.5)

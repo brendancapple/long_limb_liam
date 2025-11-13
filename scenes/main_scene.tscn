@@ -1,14 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5rt1e78bf2b0"]
+[gd_scene load_steps=12 format=3 uid="uid://c5rt1e78bf2b0"]
 
 [ext_resource type="Script" path="res://src/main_scene.gd" id="1_w1eja"]
 [ext_resource type="PackedScene" uid="uid://cb1isajxvwqnf" path="res://scenes/ui_scenes/in_game_pause_manager.tscn" id="2_qwudg"]
 [ext_resource type="Script" path="res://src/enemy_scripts/enemy_manager.gd" id="3_xmxk3"]
+[ext_resource type="Texture2D" uid="uid://duqu7a20rj11d" path="res://assets/img/Octopodes Background Elements2.jpg" id="4_158b8"]
 
 [sub_resource type="Curve2D" id="Curve2D_asf26"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -3, 1, 0, 0, 0, 0, 1282, 1, 0, 0, 0, 0, 1281, 717, 0, 0, 0, 0, -2, 721, 0, 0, 0, 0, -3, 1)
 }
 point_count = 5
+
+[sub_resource type="Gradient" id="Gradient_swomx"]
+offsets = PackedFloat32Array(0.00243902, 1)
+colors = PackedColorArray(0.0666667, 0.215686, 0.290196, 1, 0.0666667, 0.211765, 0.286275, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lr0bd"]
+gradient = SubResource("Gradient_swomx")
+width = 2
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fa4hi"]
+distance = -1500.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_vjoc2"]
+normal = Vector2(0, 1)
+distance = -1500.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_rpkdi"]
+normal = Vector2(1, 0)
+distance = -1500.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_pvbls"]
+normal = Vector2(-1, 0)
+distance = -1500.0
 
 [node name="Main Scene" type="Node2D"]
 script = ExtResource("1_w1eja")
@@ -27,5 +51,30 @@ position = Vector2(-3, 1)
 [node name="SpawnTimer" type="Timer" parent="EnemyManager"]
 
 [node name="Enemies" type="Node" parent="EnemyManager"]
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+scale = Vector2(5000, 5000)
+texture = SubResource("GradientTexture1D_lr0bd")
+
+[node name="BG Sprite" type="Sprite2D" parent="Background"]
+texture = ExtResource("4_158b8")
+
+[node name="Border" type="Area2D" parent="Background" groups=["BG"]]
+collision_layer = 7
+collision_mask = 0
+
+[node name="Lower" type="CollisionShape2D" parent="Background/Border"]
+shape = SubResource("WorldBoundaryShape2D_fa4hi")
+
+[node name="Upper" type="CollisionShape2D" parent="Background/Border"]
+shape = SubResource("WorldBoundaryShape2D_vjoc2")
+
+[node name="Left" type="CollisionShape2D" parent="Background/Border"]
+shape = SubResource("WorldBoundaryShape2D_rpkdi")
+
+[node name="Right" type="CollisionShape2D" parent="Background/Border"]
+shape = SubResource("WorldBoundaryShape2D_pvbls")
 
 [connection signal="timeout" from="EnemyManager/SpawnTimer" to="EnemyManager" method="_on_spawn_timer_timeout"]

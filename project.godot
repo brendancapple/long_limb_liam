@@ -34,6 +34,7 @@ version_control/autoload_on_startup=true
 Enemy="things that get grabbed and slap"
 Player=""
 Latchbox=""
+BG=""
 
 [input]
 
