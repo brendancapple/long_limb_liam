@@ -1,14 +1,72 @@
-[gd_scene load_steps=12 format=3 uid="uid://buk4g4b5iq34l"]
+[gd_scene load_steps=27 format=3 uid="uid://buk4g4b5iq34l"]
 
 [ext_resource type="Script" path="res://src/player_script.gd" id="1_bumg4"]
 [ext_resource type="Texture2D" uid="uid://gyphx0ows2kv" path="res://assets/img/player/Octopodes Sprites 2.0001.png" id="2_r8vru"]
+[ext_resource type="Texture2D" uid="uid://cwuuxttxas5wu" path="res://assets/img/player/Octopodes Sprites 2.0009.png" id="2_y7h4w"]
 [ext_resource type="Texture2D" uid="uid://dgl2eycxv0p7p" path="res://assets/img/player/Octopodes Sprites 2.0002.png" id="3_86g1w"]
+[ext_resource type="Texture2D" uid="uid://b2ssyyjkgkiws" path="res://assets/img/player/Octopodes Sprites 2.0011.png" id="3_lpmvd"]
 [ext_resource type="Texture2D" uid="uid://impbq0ck5nvm" path="res://assets/img/player/Octopodes Sprites 2.0003.png" id="4_7jk7j"]
+[ext_resource type="Texture2D" uid="uid://dfnq32032k2lo" path="res://assets/img/player/Octopodes Sprites 2.0012.png" id="4_vbgsm"]
+[ext_resource type="Texture2D" uid="uid://b4v27eywb15ic" path="res://assets/img/player/Octopodes Sprites 2.0013.png" id="5_hv5ln"]
 [ext_resource type="Texture2D" uid="uid://ca1jhg6dr7sfa" path="res://assets/img/player/Octopodes Sprites 2.0004.png" id="5_jqpx5"]
 [ext_resource type="Texture2D" uid="uid://dcglbf67xdp84" path="res://assets/img/player/Octopodes Sprites.0006.png" id="6_jodow"]
+[ext_resource type="Texture2D" uid="uid://cxcoc1lhwquqm" path="res://assets/img/player/Octopodes Sprites 2.0014.png" id="6_oyx04"]
+[ext_resource type="Texture2D" uid="uid://qxgr78egxvmd" path="res://assets/img/player/Octopodes Sprites 2.0015.png" id="7_hc8bb"]
+[ext_resource type="Texture2D" uid="uid://bdbi8l5b5wphp" path="res://assets/img/player/Octopodes Sprites 2.0016.png" id="8_jlg0k"]
+[ext_resource type="Texture2D" uid="uid://dq1m4o2yqnshu" path="res://assets/img/player/Octopodes Sprites 2.0017.png" id="9_iu124"]
+[ext_resource type="Texture2D" uid="uid://bkgndplhnj21y" path="res://assets/img/player/Octopodes Sprites 2.0018.png" id="10_xcqfa"]
+[ext_resource type="Texture2D" uid="uid://bujs2tteegdgd" path="res://assets/img/player/Octopodes Sprites 2.0019.png" id="11_gs68l"]
+[ext_resource type="Texture2D" uid="uid://du5vdqr1ridwt" path="res://assets/img/player/Octopodes Sprites 2.0020.png" id="12_vuho4"]
+[ext_resource type="Texture2D" uid="uid://dncggksh2132u" path="res://assets/img/player/Octopodes Sprites 2.0005.png" id="17_q832q"]
+[ext_resource type="Texture2D" uid="uid://dkpiewg7gj3v1" path="res://assets/img/player/Octopodes Sprites 2.0006.png" id="18_r2ysv"]
+[ext_resource type="Texture2D" uid="uid://bbutxhudj37rm" path="res://assets/img/player/Octopodes Sprites 2.0007.png" id="19_mxdqn"]
+[ext_resource type="Texture2D" uid="uid://wgf2vu7k6ela" path="res://assets/img/player/Octopodes Sprites 2.0008.png" id="20_6yk7q"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_oxc6c"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y7h4w")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_lpmvd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_vbgsm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hv5ln")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_oyx04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_hc8bb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jlg0k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_iu124")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_xcqfa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_gs68l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_vuho4")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_r8vru")
@@ -28,11 +86,23 @@ animations = [{
 "texture": ExtResource("5_jqpx5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_7jk7j")
+"texture": ExtResource("17_q832q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_r2ysv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_mxdqn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_6yk7q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_r8vru")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_giv1h"]
@@ -96,8 +166,6 @@ fill_mode = 2
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_oxc6c")
 animation = &"walk"
-frame = 2
-frame_progress = 0.65532
 
 [node name="Collider" type="CollisionShape2D" parent="Player"]
 shape = SubResource("CircleShape2D_giv1h")

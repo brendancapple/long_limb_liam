@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cf32xoa02qjea"]
+[gd_scene load_steps=8 format=3 uid="uid://cf32xoa02qjea"]
 
 [ext_resource type="Script" path="res://src/enemy_scripts/enemy_basic.gd" id="1_m8ltr"]
+[ext_resource type="Texture2D" uid="uid://b1aagfhghhhlm" path="res://assets/img/enemy/Octo  Enemy 2.0001.png" id="2_2hclv"]
 [ext_resource type="Texture2D" uid="uid://jhn5w1bm28lc" path="res://assets/img/enemy/Octo  Enemy 2.0002.png" id="2_lett2"]
 [ext_resource type="Texture2D" uid="uid://byltexmsvc41i" path="res://assets/img/enemy/Octo  Enemy 2.0003.png" id="3_tfcjd"]
 
@@ -11,14 +12,17 @@ radius = 92.1358
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("2_2hclv")
+}, {
+"duration": 1.0,
 "texture": ExtResource("2_lett2")
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_tfcjd")
 }],
-"loop": false,
+"loop": true,
 "name": &"default",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6vv0x"]
@@ -36,8 +40,7 @@ shape = SubResource("CircleShape2D_ecdeq")
 [node name="EnemySprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_pc42u")
-frame = 1
-frame_progress = 1.0
+frame_progress = 0.217893
 
 [node name="Hitbox" type="Area2D" parent="." groups=["Enemy"]]
 collision_layer = 16
