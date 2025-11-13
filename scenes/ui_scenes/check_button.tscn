@@ -1,6 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlhdggij2qslf"]
+[gd_scene load_steps=5 format=3 uid="uid://dlhdggij2qslf"]
 
 [ext_resource type="Script" path="res://src/ui_scripts/check_button.gd" id="1_kto0e"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j43r6"]
+bg_color = Color(0.427219, 0.60592, 0.868208, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2tov"]
+bg_color = Color(0.330223, 0.46421, 0.88273, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="Theme" id="Theme_gaa1p"]
+Button/colors/font_color = Color(0.015861, 0.0852393, 0.0543042, 1)
+Button/colors/font_focus_color = Color(0.0156863, 0.0862745, 0.054902, 1)
+Button/colors/font_hover_color = Color(0.0156863, 0.0862745, 0.054902, 1)
+Button/colors/font_hover_pressed_color = Color(0.0156863, 0.0862745, 0.054902, 1)
+Button/colors/font_pressed_color = Color(0.0156863, 0.0862745, 0.054902, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_j43r6")
+Button/styles/focus = SubResource("StyleBoxFlat_a2tov")
+Button/styles/hover = SubResource("StyleBoxFlat_a2tov")
+Button/styles/normal = SubResource("StyleBoxFlat_j43r6")
+Button/styles/pressed = SubResource("StyleBoxFlat_a2tov")
 
 [node name="Check Button" type="HBoxContainer"]
 offset_right = 40.0
@@ -10,6 +36,8 @@ script = ExtResource("1_kto0e")
 
 [node name="Actual Check Button" type="CheckButton" parent="."]
 layout_mode = 2
+size_flags_horizontal = 3
 mouse_filter = 2
+theme = SubResource("Theme_gaa1p")
 
 [connection signal="toggled" from="Actual Check Button" to="." method="_on_actual_check_button_toggled"]

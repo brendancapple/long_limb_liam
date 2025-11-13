@@ -44,7 +44,6 @@ alignment = 1
 script = ExtResource("1_ni1ym")
 
 [node name="Unpause" parent="Container" instance=ExtResource("2_hsjao")]
-custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -52,7 +51,6 @@ text = "Unpause"
 what_method_does_this_button_do = "unpause_game"
 
 [node name="Settings" parent="Container" instance=ExtResource("2_hsjao")]
-custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -61,7 +59,6 @@ what_method_does_this_button_do = "switch_to"
 args = ["settings"]
 
 [node name="Quit Run" parent="Container" instance=ExtResource("2_hsjao")]
-custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4

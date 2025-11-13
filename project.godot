@@ -14,7 +14,9 @@ config/name="Long Limb Liam"
 config/version="0.1"
 run/main_scene="res://scenes/ui_scenes/top_level.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.00814917, 0.00224857, 1.88011e-10, 1)
+boot_splash/image="res://assets/img/player/Octopodes Sprites 2.0001.png"
+config/icon="res://assets/img/player/Octopodes Sprites 2.0001.png"
 
 [display]
 

@@ -1,11 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://8l12e711povs"]
+[gd_scene load_steps=5 format=3 uid="uid://8l12e711povs"]
 
 [ext_resource type="Script" path="res://src/ui_scripts/option_button.gd" id="1_dvwna"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j43r6"]
+bg_color = Color(0.427219, 0.60592, 0.868208, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2tov"]
+bg_color = Color(0.330223, 0.46421, 0.88273, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="Theme" id="Theme_pq2cc"]
+Button/colors/font_color = Color(0.015861, 0.0852393, 0.0543042, 1)
+Button/colors/font_focus_color = Color(0.0156863, 0.0862745, 0.054902, 1)
+Button/colors/font_hover_color = Color(0.0156863, 0.0862745, 0.054902, 1)
+Button/colors/font_hover_pressed_color = Color(0.0156863, 0.0862745, 0.054902, 1)
+Button/colors/font_pressed_color = Color(0.0156863, 0.0862745, 0.054902, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_j43r6")
+Button/styles/focus = SubResource("StyleBoxFlat_a2tov")
+Button/styles/hover = SubResource("StyleBoxFlat_a2tov")
+Button/styles/normal = SubResource("StyleBoxFlat_j43r6")
+Button/styles/pressed = SubResource("StyleBoxFlat_a2tov")
 
 [node name="Option Button" type="HBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -13,8 +41,10 @@ script = ExtResource("1_dvwna")
 
 [node name="Button Name" type="Label" parent="."]
 layout_mode = 2
+theme = SubResource("Theme_pq2cc")
 
 [node name="Actual Option Button" type="OptionButton" parent="."]
 layout_mode = 2
+theme = SubResource("Theme_pq2cc")
 
 [connection signal="item_selected" from="Actual Option Button" to="." method="_on_actual_option_button_item_selected"]

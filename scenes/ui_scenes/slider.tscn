@@ -1,6 +1,32 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhrwu25ssg8an"]
+[gd_scene load_steps=5 format=3 uid="uid://bhrwu25ssg8an"]
 
 [ext_resource type="Script" path="res://src/ui_scripts/slider.gd" id="1_agoh1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j43r6"]
+bg_color = Color(0.427219, 0.60592, 0.868208, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2tov"]
+bg_color = Color(0.330223, 0.46421, 0.88273, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="Theme" id="Theme_0sq5m"]
+Button/colors/font_color = Color(0.015861, 0.0852393, 0.0543042, 1)
+Button/colors/font_focus_color = Color(0.0156863, 0.0862745, 0.054902, 1)
+Button/colors/font_hover_color = Color(0.0156863, 0.0862745, 0.054902, 1)
+Button/colors/font_hover_pressed_color = Color(0.0156863, 0.0862745, 0.054902, 1)
+Button/colors/font_pressed_color = Color(0.0156863, 0.0862745, 0.054902, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_j43r6")
+Button/styles/focus = SubResource("StyleBoxFlat_a2tov")
+Button/styles/hover = SubResource("StyleBoxFlat_a2tov")
+Button/styles/normal = SubResource("StyleBoxFlat_j43r6")
+Button/styles/pressed = SubResource("StyleBoxFlat_a2tov")
 
 [node name="Slider" type="VBoxContainer"]
 anchors_preset = 15
@@ -17,6 +43,7 @@ layout_mode = 2
 [node name="Actual Slider" type="HSlider" parent="."]
 layout_mode = 2
 mouse_filter = 2
+theme = SubResource("Theme_0sq5m")
 step = 5.0
 value = 70.0
 rounded = true
