@@ -11,6 +11,7 @@ extends Node2D
 @onready var _camera = $Player/FollowCamera
 @onready var _hud = $Player/HUDLayer/HUD
 @onready var _hud_healthbar = $HUDLayer/HUD/Healthbar
+@onready var _hud_score = $HUDLayer/HUD/Score
 
 @export var max_health = 5
 var health = max_health
@@ -41,6 +42,8 @@ var hand_latchnode: Area2D = null
 
 var mouse: Vector2 = Vector2(0,0)
 
+var score: int = 0
+
 ## Physics
 func apply_friction(a: Vector2, v: Vector2, coefficient: float, delta: float) -> Vector2:
 	var output = v - (v * coefficient * delta)
@@ -60,6 +63,11 @@ func apply_knockback(area: Area2D):
 	_player.velocity -= (area.global_position - _player.global_position).normalized() * knockback
 
 
+## Score Handling
+func increase_score():
+	score += 1
+	_hud_score.text = str(score)
+
 ## Health Handling
 func process_damage(area):
 	health -= 1
@@ -69,6 +77,7 @@ func process_damage(area):
 		die()
 
 func die():
+	get_tree().get_root().get_child(0).last_score = score
 	queue_free()
 	get_tree().get_root().get_child(0).end_game()
 
@@ -123,16 +132,18 @@ func position_hand(delta: float, mouse: Vector2, burst: bool) -> void:
 			else:
 				hand_state = IDLE
 		PULL: 
-			hand_target = _player.position + default_hand_distance  * aim
-			hand_acceleration = (hand_target - _hand.position) * aim_acceleration
-			_hand.velocity = apply_friction(hand_acceleration, _hand.velocity, hand_sliding_friction, delta)
-			if burst:
-				_hand.velocity -= aim * pull_burst
+			if burst and is_instance_valid(hand_latchnode):
+				hand_latchnode.get_parent().velocity -= aim * push_burst 
+			hand_state = LATCHED
+			hand_latchnode = null
 		PUSH:
 			hand_acceleration = (mouse - _hand.position) * push_acceleration
 			_hand.velocity = apply_friction(hand_acceleration, _hand.velocity, hand_sliding_friction, delta)
 			if burst:
-				_hand.velocity += aim * push_burst
+				_hand.velocity += aim * 2 * push_burst
+				if is_instance_valid(hand_latchnode):
+					hand_latchnode.get_parent().velocity += aim * push_burst 
+			hand_latchnode = null
 		_:
 			print("Error")
 			pass
@@ -162,7 +173,7 @@ func set_hand_state() -> bool:
 	
 	if Input.is_action_pressed("Pull"):
 		hand_state = PULL
-		return prev == IDLE
+		return false
 	if Input.is_action_pressed("Push"):
 		hand_state = PUSH
 		return prev == IDLE

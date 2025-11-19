@@ -8,6 +8,7 @@ extends Control
 @onready var Data_Manager = get_node("Data Storage Manager")
 
 var game_reference = null
+var last_score = 0
 
 func _ready() -> void:
 	UI_Manager.switch_scene("main_menu")
@@ -35,6 +36,7 @@ func end_game()-> void:
 	if game_reference != null:
 		game_reference.queue_free()
 		UI_Manager.switch_scene("end_scene")
+		
 
 
 func pause_game()-> void:

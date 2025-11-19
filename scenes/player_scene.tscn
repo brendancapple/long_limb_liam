@@ -208,6 +208,19 @@ stretch_margin_left = 3
 texture_under = ExtResource("22_7uoy0")
 texture_progress = ExtResource("23_5766m")
 
+[node name="Score" type="Label" parent="HUDLayer/HUD"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 600.0
+offset_top = 2.0
+offset_right = 640.0
+offset_bottom = 25.0
+grow_horizontal = 2
+text = "0"
+horizontal_alignment = 1
+
 [connection signal="area_entered" from="Player/Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="area_entered" from="Hand/Grabbox" to="." method="_on_grabbox_area_entered"]
 [connection signal="area_exited" from="Hand/Grabbox" to="." method="_on_grabbox_area_exited"]

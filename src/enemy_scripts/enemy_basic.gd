@@ -43,6 +43,7 @@ func process_damage(area):
 		die()
 	
 func die():
+	player.increase_score()
 	queue_free()
 	
 func process_pathfinding(delta: float):
